@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -15,6 +16,7 @@ import javax.persistence.ManyToOne;
  */
 
 @Entity
+@Table(name = "animal")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +53,7 @@ public class Animal {
     @JoinColumn(name = "ong_id")
     private Ong ong;
 
-enum Sexo {
+public enum Sexo {
 M,
 F}
 

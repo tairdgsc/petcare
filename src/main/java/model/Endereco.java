@@ -85,5 +85,14 @@ public Endereco() {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    
+    public Endereco(String cep, String rua, int numero, String cidade, String estado) {
+    this.cep = cep;
+    this.rua = rua;
+    this.numero = numero;
+    this.cidade = cidade;
+    this.estado = estado;
+}
+
 
 }

@@ -1,7 +1,5 @@
 package model;
 
-import java.awt.List;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -23,50 +21,53 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "ong")
-    public class Ong {
+public class Ong {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name="nome")
+
+    @Column(name = "nome")
     private String nome;
-    
-    @Column(name="foco")
+
+    @Column(name = "foco")
     private String foco;
-    
-    @Column(name="contato")
+
+    @Column(name = "contato")
     private String contato;
-    
-    @Column(name="email")
+
+    @Column(name = "email")
     private String email;
-    
-    @Column(name="senha")
+
+    @Column(name = "senha")
     private String senha;
-    
-    @ManyToMany(cascade = { CascadeType.ALL })
+
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-        name = "ong_pessoa",
-        joinColumns = { @JoinColumn(name = "ong_id") },
-        inverseJoinColumns = { @JoinColumn(name = "pessoa_id") }
+            name = "ong_pessoa",
+            joinColumns = {
+                @JoinColumn(name = "ong_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "pessoa_id")}
     )
     private Set<Pessoa> pessoas = new HashSet<>();
-    
+
     @OneToMany(mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Animal> animais = new ArrayList<>();
-    
+    private Set<Animal> animais = new HashSet<>();
+
     @OneToMany(mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Atividade> atividades = new ArrayList<>();
-    
+    private Set<Atividade> atividade = new HashSet<>();
+
     @OneToMany(mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Adocao> adocoes = new ArrayList<>();
-    
+    private Set<Adocao> adocoes = new HashSet<>();
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
-    
+
     @OneToMany(mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Despesa> despesas = new ArrayList<>();
-    
+    private Set<Despesa> despesas = new HashSet<>();
+
     public int getId() {
         return id;
     }
@@ -79,30 +80,6 @@ import javax.persistence.Table;
         this.pessoas = pessoas;
     }
 
-    public ArrayList<Animal> getAnimais() {
-        return animais;
-    }
-
-    public void setAnimais(ArrayList<Animal> animais) {
-        this.animais = animais;
-    }
-
-    public ArrayList<Atividade> getAtividades() {
-        return atividades;
-    }
-
-    public void setAtividades(ArrayList<Atividade> atividades) {
-        this.atividades = atividades;
-    }
-
-    public ArrayList<Adocao> getAdocoes() {
-        return adocoes;
-    }
-
-    public void setAdocoes(ArrayList<Adocao> adocoes) {
-        this.adocoes = adocoes;
-    }
-
     public Endereco getEndereco() {
         return endereco;
     }
@@ -111,11 +88,11 @@ import javax.persistence.Table;
         this.endereco = endereco;
     }
 
-    public ArrayList<Despesa> getDespesas() {
+    public Set<Despesa> getDespesas() {
         return despesas;
     }
 
-    public void setDespesas(ArrayList<Despesa> despesas) {
+    public void setDespesas(Set<Despesa> despesas) {
         this.despesas = despesas;
     }
 
@@ -163,8 +140,48 @@ import javax.persistence.Table;
         this.senha = senha;
     }
 
+    public Set<Animal> getAnimais() {
+        return animais;
+    }
+
+    public void setAnimais(Set<Animal> animais) {
+        this.animais = animais;
+    }
+
+    public Set<Atividade> getAtividades() {
+        return atividade;
+    }
+
+    public void setAtividades(Set<Atividade> atividades) {
+        this.atividade = atividades;
+    }
+
+    public Set<Adocao> getAdocoes() {
+        return adocoes;
+    }
+
+    public void setAdocoes(Set<Adocao> adocoes) {
+        this.adocoes = adocoes;
+    }
+
+    public Ong(String nome, String foco, String contato, String email, String senha, Set<Pessoa> pessoas,
+            Set<Animal> animais, Set<Atividade> atividades, Set<Adocao> adocoes, Endereco endereco,
+            Set<Despesa> despesas) {
+        this.nome = nome;
+        this.foco = foco;
+        this.contato = contato;
+        this.email = email;
+        this.senha = senha;
+        this.pessoas = pessoas;
+        this.animais = animais;
+        this.atividade = atividades;
+        this.adocoes = adocoes;
+        this.endereco = endereco;
+        this.despesas = despesas;
+    }
 
     public Ong() {
+        // Empty constructor required by JPA
     }
 
 }

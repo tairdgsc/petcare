@@ -4,6 +4,14 @@
  */
 package views;
 
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.swing.JFrame;
+import model.Ong;
+
 /**
  *
  * @author Taila
@@ -28,14 +36,14 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        JTextPassword = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        JTextEmail = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,12 +61,22 @@ public class Login extends javax.swing.JFrame {
         jCheckBox1.setText("MOSTRAR");
 
         jButton1.setText("ENTRAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel3.setText("Não tem uma conta?");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel4.setText("CADASTRE-SE");
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        jButton2.setText("CADASTRE-SE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,7 +92,7 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                 .addComponent(jButton1)
                                 .addComponent(jLabel3)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton2))
                             .addGap(61, 61, 61))
                         .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -83,8 +101,8 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jLabel20))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(JTextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(189, 189, 189))
         );
         layout.setVerticalGroup(
@@ -97,11 +115,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox1)
                 .addGap(46, 46, 46)
@@ -109,12 +127,49 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addComponent(jButton2)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JFrame cadastro = new Cadastro();
+
+        cadastro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        cadastro.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        EntityManagerFactory emf
+                = Persistence.createEntityManagerFactory("petcare");
+        EntityManager em = emf.createEntityManager();
+
+        String email = JTextEmail.getText();
+        String password = JTextPassword.getText();
+
+        Query consulta = em.createQuery("select o "
+                + "from Ong o where o.email = :email");
+        consulta.setParameter("email", email);
+        List<Ong> lista = consulta.getResultList();
+
+        for (Ong ong : lista) {
+            if (ong.getSenha().equals(password)) {
+                JFrame menu = new Menu();
+                menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                menu.setVisible(true);
+                this.dispose();
+
+            } else {
+                System.out.println("errou a senha");
+            }
+        }
+
+        em.close();
+        emf.close();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,15 +208,15 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JTextEmail;
+    private javax.swing.JTextField JTextPassword;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField17;
     // End of variables declaration//GEN-END:variables
 }

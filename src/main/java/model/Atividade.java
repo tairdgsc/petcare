@@ -9,34 +9,47 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Taila
  */
+@Entity
+@Table(name = "atividade")
 public class Atividade {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @Column(name = "nome_atividade")
     private String nome_atividade;
-    
+
     @Column(name = "data_hora")
     private Time data_hora;
-    
-    @Column(name = "decricao")
-    private String decricao;
-    
+
+    @Column(name = "descricao")
+    private String descricao;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ong_id")
     private Ong ong;
     
-    @Column(name = "pessoa_id")
-    private int pessoa_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 
-public Atividade() {
-}
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public Atividade() {
+    }
 
     public int getId() {
         return id;
@@ -62,20 +75,20 @@ public Atividade() {
         this.data_hora = data_hora;
     }
 
-    public String getDecricao() {
-        return decricao;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDecricao(String decricao) {
-        this.decricao = decricao;
+    public void setDescricao(String decricao) {
+        this.descricao = decricao;
     }
 
-    public int getPessoa_id() {
-        return pessoa_id;
+    public Ong getOng() {
+        return ong;
     }
 
-    public void setPessoa_id(int pessoa_id) {
-        this.pessoa_id = pessoa_id;
+    public void setOng(Ong ong) {
+        this.ong = ong;
     }
 
 }

@@ -43,26 +43,26 @@ public class Pessoa {
     private String email;
     
     @Column(name="papel")
-    private Papel papel;
+    public Papel papel;
     
     @ManyToMany(mappedBy = "pessoas")
     private Set<Ong> ongs = new HashSet<>();
     
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private ArrayList<Atividade> atividades = new ArrayList<>();
+    private Set<Atividade> atividades = new HashSet<>();
 
-    public ArrayList<Atividade> getAtividades() {
+    public Set<Atividade> getAtividades() {
         return atividades;
     }
 
-    public void setAtividades(ArrayList<Atividade> atividades) {
+    public void setAtividades(HashSet<Atividade> atividades) {
         this.atividades = atividades;
     }
 
 
     
 
-enum Papel {
+public enum Papel {
 voluntario,
 funcionario,
 adotante,
@@ -134,5 +134,18 @@ public Pessoa() {
     public void setOngs(Set<Ong> ongs) {
         this.ongs = ongs;
     }
+    
+    public Pessoa( String nome, String cpf, Endereco endereco, String telefone, String email,
+              Papel papel, Set<Ong> ongs, Set<Atividade> atividades) {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.endereco = endereco;
+    this.telefone = telefone;
+    this.email = email;
+    this.papel = papel;
+    this.ongs = ongs;
+    this.atividades = atividades;
+}
+
 
 }

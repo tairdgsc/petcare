@@ -1,7 +1,6 @@
 package model;
 
 import javax.annotation.processing.Generated;
-import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
@@ -10,11 +9,11 @@ import model.Endereco;
 import model.Ong;
 import model.Pessoa.Papel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-05-28T13:09:29", comments="EclipseLink-2.7.10.v20211216-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-05-28T22:27:44", comments="EclipseLink-2.7.10.v20211216-rNA")
 @StaticMetamodel(Pessoa.class)
 public class Pessoa_ { 
 
-    public static volatile ListAttribute<Pessoa, Atividade> atividades;
+    public static volatile SetAttribute<Pessoa, Atividade> atividades;
     public static volatile SingularAttribute<Pessoa, String> telefone;
     public static volatile SingularAttribute<Pessoa, Endereco> endereco;
     public static volatile SingularAttribute<Pessoa, String> cpf;

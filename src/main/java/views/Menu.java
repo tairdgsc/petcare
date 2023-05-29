@@ -13,13 +13,14 @@ import javax.swing.JPanel;
  */
 public class Menu extends javax.swing.JFrame {
 
-    private JPanel teste;
+    private JPanel telaAtual;
 
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
+        telaAtual = new JPanel();
     }
 
     /**
@@ -35,18 +36,17 @@ public class Menu extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,33 +73,47 @@ public class Menu extends javax.swing.JFrame {
         jPanel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel3.setLayout(new java.awt.GridLayout(0, 1, 0, 8));
 
-        jButton2.setText("DESPESAS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("PERFIL");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2);
+        jPanel3.add(jButton4);
 
-        jLabel9.setText("DESPESAS");
-        jPanel3.add(jLabel9);
+        jButton5.setText("VOLUNTÁRIOS");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton5);
 
-        jLabel8.setText("ATIVIDADES");
-        jPanel3.add(jLabel8);
+        jButton6.setText("ANIMAIS DA ONG");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton6);
 
-        jLabel7.setText("ADOÇÕES REALIZADAS");
-        jPanel3.add(jLabel7);
+        jButton7.setText("CONSULTAS MEDICAS");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton7);
 
-        jLabel6.setText("SOLICITAÇÕES DE ADOÇÃO");
-        jPanel3.add(jLabel6);
+        jButton8.setText("CADASTRAR UM PET");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton8);
 
-        jLabel5.setText("CADASTRAR UM PET");
-        jPanel3.add(jLabel5);
-
-        jLabel4.setText("CONSULTAS MEDICAS");
-        jPanel3.add(jLabel4);
-
-        jButton3.setText("jButton3");
+        jButton3.setText("SOLICITAÇÃO DE ADOÇÃO");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -107,14 +121,29 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel3.add(jButton3);
 
-        jLabel3.setText("ANIMAIS DA ONG");
-        jPanel3.add(jLabel3);
+        jButton9.setText("ADOÇÕES REALIZADAS");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton9);
 
-        jLabel2.setText("VOLUNTARIOS");
-        jPanel3.add(jLabel2);
+        jButton10.setText("ATIVIDADES");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton10);
 
-        jLabel1.setText("PERFIL");
-        jPanel3.add(jLabel1);
+        jButton2.setText("DESPESAS");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -126,24 +155,34 @@ public class Menu extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jButton1.setText("SAIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(48, 31, 24, 26);
         jPanel2.add(jButton1, gridBagConstraints);
 
-        mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        mainPanel.setMaximumSize(new java.awt.Dimension(569, 623));
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+            .addGap(0, 569, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 623, Short.MAX_VALUE)
         );
+
+        jScrollPane1.setViewportView(mainPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,29 +191,29 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        teste = new SolicitacaoAdocao();
+        
+        telaAtual.setVisible(false);
+        
+        telaAtual = new Despesas();
 
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(teste, BorderLayout.CENTER);
+        mainPanel.add(telaAtual, BorderLayout.CENTER);
 
         revalidate();
         repaint();
@@ -184,10 +223,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        teste = new AnimaisDaOngAtualizado();
+        telaAtual.setVisible(false);
+        telaAtual = new SolicitacaoAdocao();
 
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(teste, BorderLayout.CENTER);
+        mainPanel.add(telaAtual, BorderLayout.CENTER);
 
         revalidate();
         repaint();
@@ -195,6 +235,109 @@ public class Menu extends javax.swing.JFrame {
         pack();
         setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        telaAtual.setVisible(false);
+        telaAtual = new Perfil();
+
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(telaAtual, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+
+        pack();
+        setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        telaAtual.setVisible(false);
+        telaAtual = new Voluntarios();
+
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(telaAtual, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+
+        pack();
+        setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        telaAtual.setVisible(false);
+        telaAtual = new AnimaisDaOng();
+
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(telaAtual, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+
+        pack();
+        setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        telaAtual.setVisible(false);
+        telaAtual = new ConsultasMedicas();
+
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(telaAtual, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+
+        pack();
+        setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        telaAtual.setVisible(false);
+        telaAtual = new CadastrarPet();
+
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(telaAtual, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+
+        pack();
+        setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        telaAtual.setVisible(false);
+        telaAtual = new AdocoesRealizadas();
+
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(telaAtual, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+
+        pack();
+        setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        telaAtual.setVisible(false);
+
+        telaAtual = new ListagemAtividades();
+
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(telaAtual, BorderLayout.CENTER);
+
+        revalidate();
+        repaint();
+
+        pack();
+        setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,20 +376,19 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }

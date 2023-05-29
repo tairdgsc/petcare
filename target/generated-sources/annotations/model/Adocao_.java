@@ -8,7 +8,7 @@ import model.Animal;
 import model.Ong;
 import model.Pessoa;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-05-28T13:09:29", comments="EclipseLink-2.7.10.v20211216-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-05-28T22:27:44", comments="EclipseLink-2.7.10.v20211216-rNA")
 @StaticMetamodel(Adocao.class)
 public class Adocao_ { 
 

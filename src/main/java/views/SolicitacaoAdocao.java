@@ -4,6 +4,7 @@
  */
 package views;
 
+
 /**
  *
  * @author tai
@@ -25,10 +26,10 @@ public class SolicitacaoAdocao extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -37,30 +38,28 @@ public class SolicitacaoAdocao extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
         jButton3 = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        setLayout(new java.awt.GridLayout(0, 1, 10, 10));
+        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
+        layout.columnWidths = new int[] {0};
+        layout.rowHeights = new int[] {0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0};
+        setLayout(layout);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("SOLICITAÇÕES DE ADOÇÃO");
-        add(jLabel11);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(jLabel11, gridBagConstraints);
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 2));
-
-        jLabel16.setText("CADASTRAR PET EM ADOÇÃO");
-        jPanel1.add(jLabel16);
 
         jTextField8.setText("BUSCA PET");
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
@@ -70,63 +69,101 @@ public class SolicitacaoAdocao extends javax.swing.JPanel {
         });
         jPanel1.add(jTextField8);
 
-        add(jPanel1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 12;
+        add(jPanel1, gridBagConstraints);
 
         jLabel13.setText("CICLANINHO");
-        add(jLabel13);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel13, gridBagConstraints);
 
         jLabel12.setText("FULANINHO");
-        add(jLabel12);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel12, gridBagConstraints);
 
         jLabel14.setText("BELTRANINHO");
-        add(jLabel14);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel14, gridBagConstraints);
 
         jLabel17.setText("BELTRANINHO");
-        add(jLabel17);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel17, gridBagConstraints);
 
         jLabel18.setText("CICLANINHO");
-        add(jLabel18);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel18, gridBagConstraints);
 
         jLabel19.setText("FULANINHO");
-        add(jLabel19);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel19, gridBagConstraints);
 
         jLabel20.setText("BELTRANINHO");
-        add(jLabel20);
-
-        jLabel21.setText("BELTRANINHO");
-        add(jLabel21);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel20, gridBagConstraints);
 
         jLabel23.setText("CICLANINHO");
-        add(jLabel23);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel23, gridBagConstraints);
 
         jLabel24.setText("FULANINHO");
-        add(jLabel24);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel24, gridBagConstraints);
 
         jLabel25.setText("FULANINHO");
-        add(jLabel25);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 22;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel25, gridBagConstraints);
 
         jLabel26.setText("CICLANINHO");
-        add(jLabel26);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 24;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(jLabel26, gridBagConstraints);
 
-        jPanel2.setLayout(new java.awt.GridLayout(1, 2));
-
-        jLabel22.setText("Senha:");
-        jPanel2.add(jLabel22);
-        jPanel2.add(jTextField18);
-
-        add(jPanel2);
-
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jCheckBox1.setText("MOSTRAR");
-        add(jCheckBox1);
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 26;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        add(jPanel2, gridBagConstraints);
 
         jButton3.setText("SALVAR ALTERAÇÕES");
-        add(jButton3);
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("VOLTAR AO MENU");
-        add(jLabel15);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 30;
+        add(jButton3, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
@@ -136,26 +173,20 @@ public class SolicitacaoAdocao extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
