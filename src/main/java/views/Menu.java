@@ -31,312 +31,224 @@ public class Menu extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel123 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel124 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel125 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel126 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel127 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel128 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel129 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel130 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel131 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(768, 500));
+        setBackground(new java.awt.Color(149, 127, 239));
+        setMaximumSize(new java.awt.Dimension(900, 490));
+        setMinimumSize(new java.awt.Dimension(900, 490));
+        setPreferredSize(new java.awt.Dimension(900, 490));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.setName(""); // NOI18N
-        jPanel2.setLayout(new java.awt.GridBagLayout());
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setText("PETCARE");
-        jLabel10.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel10.setMaximumSize(new java.awt.Dimension(10, 5));
-        jLabel10.setMinimumSize(new java.awt.Dimension(10, 5));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(11, 33, 40, 26);
-        jPanel2.add(jLabel10, gridBagConstraints);
-
-        jPanel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel3.setLayout(new java.awt.GridLayout(0, 1, 0, 8));
-
-        jButton4.setText("PERFIL");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton4);
-
-        jButton5.setText("VOLUNTÁRIOS");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton5);
-
-        jButton6.setText("ANIMAIS DA ONG");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton6);
-
-        jButton7.setText("CONSULTAS MEDICAS");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton7);
-
-        jButton8.setText("CADASTRAR UM PET");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton8);
-
-        jButton3.setText("SOLICITAÇÃO DE ADOÇÃO");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton3);
-
-        jButton9.setText("ADOÇÕES REALIZADAS");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton9);
-
-        jButton10.setText("ATIVIDADES");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton10);
-
-        jButton2.setText("DESPESAS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton2);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipady = 128;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 31, 0, 26);
-        jPanel2.add(jPanel3, gridBagConstraints);
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jButton1.setText("SAIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(48, 31, 24, 26);
-        jPanel2.add(jButton1, gridBagConstraints);
-
+        jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(900, 490));
 
-        mainPanel.setMaximumSize(new java.awt.Dimension(569, 623));
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setMaximumSize(new java.awt.Dimension(900, 490));
+        mainPanel.setPreferredSize(new java.awt.Dimension(900, 490));
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 569, Short.MAX_VALUE)
+            .addGap(0, 900, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 623, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(mainPanel);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 630, 490));
+
+        jPanel1.setBackground(new java.awt.Color(149, 127, 239));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(255, 175, 204));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel123.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel123.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel123.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel123.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel123.setText("DESPESAS");
+        jLabel123.setToolTipText("");
+        jLabel123.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel123.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel3.add(jLabel123, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 260, 30));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 270, 40));
+
+        jPanel4.setBackground(new java.awt.Color(255, 175, 204));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel124.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel124.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel124.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel124.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel124.setText("PERFIL");
+        jLabel124.setToolTipText("");
+        jLabel124.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel124.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel4.add(jLabel124, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 260, 30));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 270, 40));
+
+        jPanel5.setBackground(new java.awt.Color(255, 175, 204));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel125.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel125.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel125.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel125.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel125.setText("VOLUNTÁRIOS");
+        jLabel125.setToolTipText("");
+        jLabel125.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel125.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel5.add(jLabel125, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 260, 30));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 270, 40));
+
+        jPanel6.setBackground(new java.awt.Color(255, 175, 204));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel126.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel126.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel126.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel126.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel126.setText("ANIMAIS DA ONG");
+        jLabel126.setToolTipText("");
+        jLabel126.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel126.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel6.add(jLabel126, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 260, 30));
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 270, 40));
+
+        jPanel7.setBackground(new java.awt.Color(255, 175, 204));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel127.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel127.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel127.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel127.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel127.setText("CONSULTAS MEDICAS");
+        jLabel127.setToolTipText("");
+        jLabel127.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel127.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel7.add(jLabel127, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 260, 30));
+
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 270, 40));
+
+        jPanel8.setBackground(new java.awt.Color(255, 175, 204));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel128.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel128.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel128.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel128.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel128.setText("CADASTRAR UM PET");
+        jLabel128.setToolTipText("");
+        jLabel128.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel128.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel8.add(jLabel128, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 260, 30));
+
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 270, 40));
+
+        jPanel9.setBackground(new java.awt.Color(255, 175, 204));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel129.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel129.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel129.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel129.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel129.setText("SOLICITAÇÕES DE ADOÇÃO");
+        jLabel129.setToolTipText("");
+        jLabel129.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel129.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel9.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 260, 30));
+
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 270, 40));
+
+        jPanel10.setBackground(new java.awt.Color(255, 175, 204));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel130.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel130.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel130.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel130.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel130.setText("ADOÇÕES REALIZADAS");
+        jLabel130.setToolTipText("");
+        jLabel130.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel130.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel10.add(jLabel130, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 260, 30));
+
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 270, 40));
+
+        jPanel11.setBackground(new java.awt.Color(255, 175, 204));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel131.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel131.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel131.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel131.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel131.setText("ATIVIDADES");
+        jLabel131.setToolTipText("");
+        jLabel131.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel131.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel11.add(jLabel131, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 5, 260, 30));
+
+        jPanel1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 270, 40));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("PetCare");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(241, 69, 116));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("SAIR");
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 90, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        telaAtual.setVisible(false);
-        
-        telaAtual = new Despesas();
-
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(telaAtual, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-
-        pack();
-        setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        telaAtual.setVisible(false);
-        telaAtual = new SolicitacaoAdocao();
-
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(telaAtual, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-
-        pack();
-        setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        telaAtual.setVisible(false);
-        telaAtual = new Perfil();
-
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(telaAtual, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-
-        pack();
-        setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        telaAtual.setVisible(false);
-        telaAtual = new Voluntarios();
-
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(telaAtual, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-
-        pack();
-        setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        telaAtual.setVisible(false);
-        telaAtual = new AnimaisDaOng();
-
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(telaAtual, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-
-        pack();
-        setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        telaAtual.setVisible(false);
-        telaAtual = new ConsultasMedicas();
-
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(telaAtual, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-
-        pack();
-        setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        telaAtual.setVisible(false);
-        telaAtual = new CadastrarPet();
-
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(telaAtual, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-
-        pack();
-        setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        telaAtual.setVisible(false);
-        telaAtual = new AdocoesRealizadas();
-
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(telaAtual, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-
-        pack();
-        setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        telaAtual.setVisible(false);
-
-        telaAtual = new ListagemAtividades();
-
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(telaAtual, BorderLayout.CENTER);
-
-        revalidate();
-        repaint();
-
-        pack();
-        setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -376,18 +288,26 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel123;
+    private javax.swing.JLabel jLabel124;
+    private javax.swing.JLabel jLabel125;
+    private javax.swing.JLabel jLabel126;
+    private javax.swing.JLabel jLabel127;
+    private javax.swing.JLabel jLabel128;
+    private javax.swing.JLabel jLabel129;
+    private javax.swing.JLabel jLabel130;
+    private javax.swing.JLabel jLabel131;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,8 @@ entities\PetCare.class
 model\Adocao_.class
 model\Despesa$Tipo.class
 app\Main.class
+views\AnimaisDaOng$2.class
+views\Perfil$1.class
 views\Cadastro.class
 model\Despesa.class
 views\Menu$1.class
@@ -24,6 +26,7 @@ views\SolicitacaoAdocao.class
 views\Despesas.class
 views\CadastrarVoluntario$1.class
 views\Menu$5.class
+views\Login$3.class
 views\Menu$9.class
 views\Menu$2.class
 views\AnimaisDaOng.class
@@ -36,11 +39,13 @@ views\CadastroOng.class
 views\CadastroOng$1.class
 views\Menu$6.class
 connection\ConnectionFactory.class
+views\Login$2.class
 model\Animal.class
 views\ConsultasMedicas.class
 model\Atividade.class
 views\FichaAdocao.class
 views\Menu$10.class
+views\AnimaisDaOng$3.class
 views\CadastrarPet$1.class
 views\ListagemAtividades.class
 views\Menu$3.class
@@ -52,6 +57,7 @@ views\ConsultasMedicas$1.class
 model\Endereco.class
 views\AdocoesRealizadas.class
 views\Menu$4.class
+views\Menu$11.class
 views\Menu$7.class
 model\Atividade_.class
 views\CadastroOng$3.class

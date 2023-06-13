@@ -1,36 +1,32 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package views;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import model.Adocao;
-import model.Animal;
-import model.Atividade;
-import model.Despesa;
-import model.Endereco;
-import model.Ong;
-import model.Pessoa;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
 /**
  *
- * @author tai
+ * @author Taila
  */
-public class CadastroOng extends javax.swing.JPanel {
+public class CadastroOng extends javax.swing.JFrame {
+
+    private JPanel teste;
 
     /**
-     * Creates new form SolicitacaoAdocao
+     * Creates new form Cadastro
      */
     public CadastroOng() {
         initComponents();
+
+        revalidate();
+        repaint();
+
+        pack();
+        setVisible(true);
+
     }
 
     /**
@@ -43,10 +39,14 @@ public class CadastroOng extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel11 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jPanel11 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         JTextCep = new javax.swing.JTextField();
@@ -56,16 +56,14 @@ public class CadastroOng extends javax.swing.JPanel {
         jPanel20 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         JTextTelefone = new javax.swing.JTextField();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
         JTextCidade = new javax.swing.JTextField();
         jPanel18 = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
         JTextEstado = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel40 = new javax.swing.JLabel();
         JTextEnd = new javax.swing.JTextField();
@@ -101,118 +99,88 @@ public class CadastroOng extends javax.swing.JPanel {
         jPanel28 = new javax.swing.JPanel();
         jLabel52 = new javax.swing.JLabel();
         JTextEmailResponsavel = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButtonCadastar = new javax.swing.JButton();
         jPanel29 = new javax.swing.JPanel();
         jLabel53 = new javax.swing.JLabel();
         JTextTelefoneResponsavel1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        java.awt.GridBagLayout layout1 = new java.awt.GridBagLayout();
-        layout1.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
-        layout1.rowHeights = new int[] {0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0};
-        setLayout(layout1);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(149, 127, 239));
+        setMinimumSize(new java.awt.Dimension(900, 490));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("PetCare");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        add(jLabel11, gridBagConstraints);
+        jPanel2.setBackground(new java.awt.Color(149, 127, 239));
+        jPanel2.setPreferredSize(new java.awt.Dimension(900, 490));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Sua ong cuida dos animais e a gente da ong.");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, 20));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setText("Será um prazer ter você por aqui! (:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("FAÇA SEU CADASTRO");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel13.setText("INFORMAÇÕES INSTITUIÇÃO");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        add(jLabel13, gridBagConstraints);
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, -1));
 
-        jButton3.setFont(new java.awt.Font("Fira Sans", 0, 10)); // NOI18N
-        jButton3.setText("ENTRAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 52;
-        gridBagConstraints.gridwidth = 5;
-        add(jButton3, gridBagConstraints);
-
-        jPanel11.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 26;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel11, gridBagConstraints);
-
+        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
         jPanel19.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
+        jLabel43.setBackground(new java.awt.Color(255, 255, 255));
         jLabel43.setText("CEP:");
         jLabel43.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel19.add(jLabel43);
         jPanel19.add(JTextCep);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel19, gridBagConstraints);
+        jPanel3.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 270, -1));
 
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
+        jLabel37.setBackground(new java.awt.Color(255, 255, 255));
         jLabel37.setText("Nome da instituição:");
         jLabel37.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel13.add(jLabel37);
         jPanel13.add(jTextNomeInst);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel13, gridBagConstraints);
+        jPanel3.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 270, -1));
 
+        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
+        jLabel44.setBackground(new java.awt.Color(255, 255, 255));
         jLabel44.setText("Telefone de contato:");
         jLabel44.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel20.add(jLabel44);
         jPanel20.add(JTextTelefone);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel20, gridBagConstraints);
+        jPanel3.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 270, -1));
 
-        jPanel14.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel14, gridBagConstraints);
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Será um prazer ter você por aqui! (:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 5;
-        add(jLabel12, gridBagConstraints);
-
-        jPanel2.setLayout(new java.awt.GridBagLayout());
-
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
+        jLabel41.setBackground(new java.awt.Color(255, 255, 255));
         jLabel41.setText("Cidade:");
         jLabel41.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel17.add(jLabel41);
@@ -224,33 +192,40 @@ public class CadastroOng extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel2.add(jPanel17, gridBagConstraints);
+        jPanel4.add(jPanel17, gridBagConstraints);
 
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
+        jLabel42.setBackground(new java.awt.Color(255, 255, 255));
         jLabel42.setText("Estado: ");
         jLabel42.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel18.add(jLabel42);
+
+        JTextEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTextEstadoActionPerformed(evt);
+            }
+        });
         jPanel18.add(JTextEstado);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 10;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.weightx = 0.1;
-        jPanel2.add(jPanel18, gridBagConstraints);
+        jPanel4.add(jPanel18, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 18;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel2, gridBagConstraints);
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 270, -1));
 
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new java.awt.GridBagLayout());
 
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
+        jLabel40.setBackground(new java.awt.Color(255, 255, 255));
         jLabel40.setText("Endereço:");
         jLabel40.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel16.add(jLabel40);
@@ -262,10 +237,12 @@ public class CadastroOng extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
-        jPanel1.add(jPanel16, gridBagConstraints);
+        jPanel5.add(jPanel16, gridBagConstraints);
 
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
+        jLabel39.setBackground(new java.awt.Color(255, 255, 255));
         jLabel39.setText("Numero:");
         jLabel39.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel15.add(jLabel39);
@@ -275,32 +252,18 @@ public class CadastroOng extends javax.swing.JPanel {
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.weightx = 0.1;
-        jPanel1.add(jPanel15, gridBagConstraints);
+        jPanel5.add(jPanel15, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel1, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 36;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(32, 0, 32, 0);
-        add(jSeparator1, gridBagConstraints);
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 270, -1));
+        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 693, 270, 10));
 
         jLabel14.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel14.setText("LOGIN E SENHA");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 38;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 12, 0);
-        add(jLabel14, gridBagConstraints);
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 740, 130, -1));
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setLayout(new java.awt.GridLayout(2, 1));
 
         jLabel36.setText("E-mail da Instituição:");
@@ -308,13 +271,9 @@ public class CadastroOng extends javax.swing.JPanel {
         jPanel12.add(jLabel36);
         jPanel12.add(JTextEmail);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 40;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel12, gridBagConstraints);
+        jPanel3.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 780, 270, -1));
 
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
         jLabel45.setText("Senha:");
@@ -322,27 +281,20 @@ public class CadastroOng extends javax.swing.JPanel {
         jPanel21.add(jLabel45);
         jPanel21.add(JTextPassword);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 42;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel21, gridBagConstraints);
+        jPanel3.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 830, 270, -1));
 
+        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
         jPanel22.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
+        jLabel46.setBackground(new java.awt.Color(255, 255, 255));
         jLabel46.setText("Qual o foco da ong?");
         jLabel46.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel22.add(jLabel46);
         jPanel22.add(JTextFoco);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel22, gridBagConstraints);
+        jPanel3.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 270, -1));
 
+        jPanel25.setBackground(new java.awt.Color(255, 255, 255));
         jPanel25.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
         jLabel49.setText("Telefone de contato:");
@@ -356,13 +308,9 @@ public class CadastroOng extends javax.swing.JPanel {
         });
         jPanel25.add(JTextTelefoneResponsavel);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 34;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel25, gridBagConstraints);
+        jPanel3.add(jPanel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 270, -1));
 
+        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
         jPanel23.setLayout(new java.awt.GridBagLayout());
 
         jLabel47.setText("Confirma Senha:");
@@ -379,6 +327,7 @@ public class CadastroOng extends javax.swing.JPanel {
         jPanel23.add(JTextConfirmaPassword, gridBagConstraints);
 
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(149, 127, 239));
         jCheckBox1.setText("MOSTRAR");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -386,43 +335,27 @@ public class CadastroOng extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         jPanel23.add(jCheckBox1, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 44;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel23, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 24;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(32, 0, 32, 0);
-        add(jSeparator2, gridBagConstraints);
+        jPanel3.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 880, 270, -1));
+
+        jSeparator2.setPreferredSize(new java.awt.Dimension(64, 3));
+        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 373, 270, -1));
 
         jLabel15.setFont(new java.awt.Font("Fira Sans", 1, 13)); // NOI18N
         jLabel15.setText("INFORMAÇÕES RESPONSÁVEL");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 26;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 12, 0);
-        add(jLabel15, gridBagConstraints);
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 230, -1));
 
+        jPanel26.setBackground(new java.awt.Color(255, 255, 255));
         jPanel26.setLayout(new java.awt.GridLayout(2, 1));
 
+        jLabel50.setBackground(new java.awt.Color(255, 255, 255));
         jLabel50.setText("Nome e Sobrenome:");
         jLabel50.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel26.add(jLabel50);
         jPanel26.add(JTextNome);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 28;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel26, gridBagConstraints);
+        jPanel3.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 270, -1));
 
+        jPanel27.setBackground(new java.awt.Color(255, 255, 255));
         jPanel27.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
         jLabel51.setText("Documento (RG)");
@@ -430,13 +363,9 @@ public class CadastroOng extends javax.swing.JPanel {
         jPanel27.add(jLabel51);
         jPanel27.add(JTextRg);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 30;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel27, gridBagConstraints);
+        jPanel3.add(jPanel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 270, -1));
 
+        jPanel28.setBackground(new java.awt.Color(255, 255, 255));
         jPanel28.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
         jLabel52.setText("E-mail:");
@@ -444,33 +373,9 @@ public class CadastroOng extends javax.swing.JPanel {
         jPanel28.add(jLabel52);
         jPanel28.add(JTextEmailResponsavel);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 32;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel28, gridBagConstraints);
+        jPanel3.add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 270, -1));
 
-        jLabel1.setText("Já possui uma conta?");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 50;
-        gridBagConstraints.gridwidth = 5;
-        add(jLabel1, gridBagConstraints);
-
-        jButtonCadastar.setText("CADASTRAR");
-        jButtonCadastar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastarActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 48;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(64, 0, 0, 0);
-        add(jButtonCadastar, gridBagConstraints);
-
+        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
         jPanel29.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
         jLabel53.setText("Telefone de contato:");
@@ -478,74 +383,116 @@ public class CadastroOng extends javax.swing.JPanel {
         jPanel29.add(jLabel53);
         jPanel29.add(JTextTelefoneResponsavel1);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 34;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        add(jPanel29, gridBagConstraints);
-    }// </editor-fold>//GEN-END:initComponents
+        jPanel3.add(jPanel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 240, -1));
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        jLabel3.setForeground(new java.awt.Color(149, 127, 239));
+        jLabel3.setText("ENTRAR");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1040, -1, 10));
 
-    private void jButtonCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastarActionPerformed
-        EntityManagerFactory emf
-                = Persistence.createEntityManagerFactory("petcare");
-        EntityManager em = emf.createEntityManager();
+        jButton2.setBackground(new java.awt.Color(149, 127, 239));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("CADASTRE-SE");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(149, 127, 239)));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 980, 270, 30));
 
-        String nomeInstuicao = jTextNomeInst.getText();
-        String foco = JTextFoco.getText();
-        String cep = JTextCep.getText();
-        String rua = JTextEnd.getText();
-        String numero = JTextNumero.getText();
-        String cidade = JTextCidade.getText();
-        String estado = JTextEstado.getText();
-        String telefoneContatoInstituicao = JTextTelefone.getText();
+        jLabel6.setText("Já tem uma conta?");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 1020, -1, 10));
 
-        String nomeResponsavel = JTextNome.getText();
-        String rg = JTextRg.getText();
-        String emailResponsavel = JTextEmailResponsavel.getText();
-        String telefoneResponsavel = JTextTelefoneResponsavel.getText();
+        jScrollPane1.setViewportView(jPanel3);
 
-        String email = JTextEmail.getText();
-        String senha = JTextPassword.getText();
-        String confirmaSenha = JTextConfirmaPassword.getText();
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 290, 330));
 
-        Set<Animal> animais = new HashSet<>();
-        Set<Atividade> atividades = new HashSet<>();
-        Set<Adocao> adocoes = new HashSet<>();
-        Set<Despesa> despesas = new HashSet<>();
-        Set<Pessoa> pessoas = new HashSet<>();
-        Set<Ong> ongs = new HashSet<>();
-        Endereco endereco = new Endereco(cep, rua, Integer.parseInt(numero), cidade, estado);
-        Pessoa responsavel = new Pessoa(nomeResponsavel, rg, endereco, telefoneResponsavel, emailResponsavel, Pessoa.Papel.gerente, ongs, atividades
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 320, 430));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("PetCare");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/amor.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        pessoas.add(responsavel);
-        Ong ong = new Ong(nomeInstuicao, foco, telefoneContatoInstituicao, email, senha, pessoas, animais, atividades, adocoes, endereco, despesas);
-
-        
-        em.getTransaction().begin();
-        em.persist(responsavel);
-        em.persist(ong);
-        em.getTransaction().commit();
-        
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(CadastroOng.this);
-
-        frame.dispose();
-        
-        
-        em.close();
-        emf.close();
-
-    }//GEN-LAST:event_jButtonCadastarActionPerformed
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
     private void JTextTelefoneResponsavelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextTelefoneResponsavelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTextTelefoneResponsavelActionPerformed
 
+    private void JTextEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTextEstadoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+//        JFrame cadastro = new Cadastro();
+
+//        cadastro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//        cadastro.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CadastroOng.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CadastroOng.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CadastroOng.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CadastroOng.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CadastroOng().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTextCep;
@@ -563,18 +510,18 @@ public class CadastroOng extends javax.swing.JPanel {
     private javax.swing.JTextField JTextTelefone;
     private javax.swing.JTextField JTextTelefoneResponsavel;
     private javax.swing.JTextField JTextTelefoneResponsavel1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButtonCadastar;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -584,15 +531,16 @@ public class CadastroOng extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
@@ -608,6 +556,10 @@ public class CadastroOng extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextNomeInst;

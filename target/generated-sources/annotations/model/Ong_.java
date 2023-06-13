@@ -11,7 +11,7 @@ import model.Despesa;
 import model.Endereco;
 import model.Pessoa;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-05-28T22:27:44", comments="EclipseLink-2.7.10.v20211216-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-06-03T18:44:25", comments="EclipseLink-2.7.10.v20211216-rNA")
 @StaticMetamodel(Ong.class)
 public class Ong_ { 
 
