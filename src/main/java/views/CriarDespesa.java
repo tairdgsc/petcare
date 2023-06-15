@@ -4,18 +4,43 @@
  */
 package views;
 
+import java.awt.BorderLayout;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JPanel;
+import model.Despesa;
+import model.Despesa.Tipo;
+import model.Ong;
+
+import views.Despesas;
+
 
 /**
  *
  * @author tai
  */
 public class CriarDespesa extends javax.swing.JPanel {
-
+    private Ong ongLogada = null;
+    private Despesa despesa = null;
     /**
      * Creates new form SolicitacaoAdocao
      */
-    public CriarDespesa() {
+    public CriarDespesa(Ong ong) {
         initComponents();
+        this.ongLogada = ong;
+    }
+    
+    public CriarDespesa(Ong ong, Despesa despesa) {
+               initComponents();
+        this.ongLogada = ong;
+        this.despesa = despesa;
+
+        jTitle.setText("Atualizar uma despesa");
+        jSubmit.setText("ATUALIZAR");
+
+        jNome.setSelectedItem(despesa.getTipo_despesa().toString());
+        jValor.setText(Double.toString(despesa.getValor()));
     }
 
     /**
@@ -28,17 +53,17 @@ public class CriarDespesa extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        jSubmit = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
+        jNome = new javax.swing.JComboBox<>();
         jPanel13 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
-        jTextField30 = new javax.swing.JTextField();
+        jValor = new javax.swing.JTextField();
         jPanel15 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
 
@@ -49,10 +74,10 @@ public class CriarDespesa extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(149, 127, 239));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Criar Despesa");
+        jTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jTitle.setForeground(new java.awt.Color(255, 255, 255));
+        jTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTitle.setText("Criar Despesa");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -60,14 +85,14 @@ public class CriarDespesa extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel5)
+                .addComponent(jTitle)
                 .addContainerGap(489, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jLabel5)
+                .addComponent(jTitle)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -75,12 +100,12 @@ public class CriarDespesa extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setBackground(new java.awt.Color(149, 127, 239));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CRIAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jSubmit.setBackground(new java.awt.Color(149, 127, 239));
+        jSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        jSubmit.setText("CRIAR");
+        jSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jSubmitActionPerformed(evt);
             }
         });
 
@@ -103,7 +128,9 @@ public class CriarDespesa extends javax.swing.JPanel {
         jLabel36.setText("Nome:");
         jLabel36.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel12.add(jLabel36);
-        jPanel12.add(jTextField32);
+
+        jNome.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "conta_luz", "conta_agua", "alimentacao", "consulta_medica", "medicacao", "outros" }));
+        jPanel12.add(jNome);
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
@@ -112,7 +139,7 @@ public class CriarDespesa extends javax.swing.JPanel {
         jLabel37.setText("Valor:");
         jLabel37.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel13.add(jLabel37);
-        jPanel13.add(jTextField30);
+        jPanel13.add(jValor);
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
@@ -130,7 +157,7 @@ public class CriarDespesa extends javax.swing.JPanel {
                         .addGap(150, 150, 150)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +184,7 @@ public class CriarDespesa extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
@@ -165,28 +192,75 @@ public class CriarDespesa extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+            JPanel parentPanel = (JPanel) this.getParent();
+
+        parentPanel.removeAll();
+        // Add new content to the mainPanel
+        JPanel despesas = new Despesas(this.ongLogada);
+        parentPanel.add(despesas, BorderLayout.CENTER);
+
+        // Repaint and revalidate the mainPanel to reflect the changes
+        parentPanel.repaint();
+        parentPanel.revalidate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitActionPerformed
+         EntityManagerFactory emf = Persistence.createEntityManagerFactory("petcare");
+        EntityManager em = emf.createEntityManager();
+
+        String nome = (String) jNome.getSelectedItem();
+        
+        Double valor = Double.valueOf(jValor.getText());
+        
+        Tipo tipo = Tipo.valueOf(nome);
+
+        em.getTransaction().begin();
+        this.ongLogada = em.find(Ong.class, this.ongLogada.getId());
+
+        if (this.despesa == null) {
+            this.despesa = new Despesa(tipo, valor, this.ongLogada);
+
+            em.persist(this.despesa);
+        } else {
+            Despesa despesa = em.find(Despesa.class, this.despesa.getId());
+            despesa.setTipo_despesa(tipo);
+            despesa.setValor(valor);
+        }
+
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
+        
+        
+        JPanel parentPanel = (JPanel) this.getParent();
+
+        parentPanel.removeAll();
+        // Add new content to the mainPanel
+        JPanel despesas = new Despesas(this.ongLogada);
+
+        parentPanel.add(despesas, BorderLayout.CENTER);
+
+        // Repaint and revalidate the mainPanel to reflect the changes
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jSubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JComboBox<String> jNome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField32;
+    private javax.swing.JButton jSubmit;
+    private javax.swing.JLabel jTitle;
+    private javax.swing.JTextField jValor;
     // End of variables declaration//GEN-END:variables
 }

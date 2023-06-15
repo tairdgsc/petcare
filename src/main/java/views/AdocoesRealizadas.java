@@ -4,6 +4,16 @@
  */
 package views;
 
+import java.awt.BorderLayout;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Adocao;
+import model.Despesa;
+import model.Ong;
+import model.Pessoa;
 
 /**
  *
@@ -11,11 +21,30 @@ package views;
  */
 public class AdocoesRealizadas extends javax.swing.JPanel {
 
+    private Ong ongLogada = null;
+
     /**
      * Creates new form SolicitacaoAdocao
      */
-    public AdocoesRealizadas() {
+    public AdocoesRealizadas(Ong ong) {
         initComponents();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("petcare");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        this.ongLogada = em.find(Ong.class, ong.getId());
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        for (Adocao adocao : this.ongLogada.getAdocoes()) {
+            if (adocao.getStatus().toString().equals(Adocao.Status.APROVADA.toString())) {
+                model.addRow(new Object[]{adocao.getId(), adocao.getAdotante().getNome(), adocao.getAnimal().getNome(), adocao.getData_adocao()});
+            }
+        }
+
+        em.close();
+        emf.close();
     }
 
     /**
@@ -29,15 +58,14 @@ public class AdocoesRealizadas extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        JTextEmail = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        setMaximumSize(new java.awt.Dimension(630, 490));
+        setMaximumSize(new java.awt.Dimension(630, 370));
+        setMinimumSize(new java.awt.Dimension(630, 370));
+        setPreferredSize(new java.awt.Dimension(630, 370));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(149, 127, 239));
@@ -66,54 +94,74 @@ public class AdocoesRealizadas extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 100));
 
-        jLabel16.setText("Buscar adotante:");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
-        add(JTextEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 250, 30));
-
-        jButton1.setBackground(new java.awt.Color(149, 127, 239));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("BUSCAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 90, 30));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Adotante", "Pet", "Data", "Visualizar"
+                "Id", "Adotante", "Pet", "Data"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 590, 260));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 590, 260));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    int row = jTable1.rowAtPoint(evt.getPoint());
+        if (row >= 0) {
+            Object rowData = jTable1.getValueAt(row, 0);
+            Adocao adocaoAtual = null;
+
+            for (Adocao adocao : this.ongLogada.getAdocoes()) {
+                if (Integer.toString(adocao.getId()).equals(rowData.toString())) {
+                    adocaoAtual = adocao;
+                }
+            }
+
+            JPanel parentPanel = (JPanel) this.getParent();
+
+            parentPanel.removeAll();
+            // Add new content to the mainPanel
+            JPanel adocaoRealizada = new AdocaoRealizada(this.ongLogada, adocaoAtual);
+            parentPanel.add(adocaoRealizada, BorderLayout.CENTER);
+
+            // Repaint and revalidate the mainPanel to reflect the changes
+            parentPanel.repaint();
+            parentPanel.revalidate();
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JTextEmail;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

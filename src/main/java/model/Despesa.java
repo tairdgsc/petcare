@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,9 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import java.util.Date;
 /**
  *
  * @author Taila
@@ -20,36 +18,45 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "despesa")
 public class Despesa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @Column(name="data")
+
+    @Column(name = "data")
     private Date data;
-    
-    @Column(name="tipo_despesa")
+
+    @Column(name = "tipo_despesa")
     private Tipo tipo_despesa;
-    
-    @Column(name="decricao")
+
+    @Column(name = "decricao")
     private String decricao;
-    
-    @Column(name="valor")
+
+    @Column(name = "valor")
     private double valor;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ong_id")
     private Ong ong;
 
-enum Tipo {
-conta_luz,
-conta_agua,
-alimentacao,
-consulta_medica,
-medicacao,
-outros}
+    public enum Tipo {
+        conta_luz,
+        conta_agua,
+        alimentacao,
+        consulta_medica,
+        medicacao,
+        outros
+    }
 
-public Despesa() {
-}
+    public Despesa() {
+    }
+
+    public Despesa(Tipo tipo, Double valor, Ong ong) {
+        this.tipo_despesa = tipo;
+        this.valor = valor;
+        this.ong = ong;
+        this.data = new Date();
+    }
 
     public int getId() {
         return id;

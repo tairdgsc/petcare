@@ -13,6 +13,12 @@
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[630, 490]"/>
     </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[630, 490]"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[630, 500]"/>
+    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -80,14 +86,20 @@
     </Container>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
         <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[300, 410]"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="100" width="630" height="490"/>
+          <AbsoluteConstraints x="0" y="100" width="630" height="410"/>
         </Constraint>
       </Constraints>
 
@@ -153,10 +165,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel29" min="-2" pref="240" max="-2" attributes="0"/>
-                          <Component id="jPanel25" min="-2" pref="270" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jPanel25" min="-2" pref="270" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
@@ -214,10 +223,7 @@
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="jPanel28" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel29" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel25" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jPanel25" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
@@ -270,6 +276,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="JTextCep">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTextCepActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -681,11 +690,11 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel51">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Documento (RG)"/>
+                    <Property name="text" type="java.lang.String" value="Documento (CPF)"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="JTextRg">
+                <Component class="javax.swing.JTextField" name="JTextCpf">
                 </Component>
               </SubComponents>
             </Container>
@@ -709,29 +718,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="JTextEmailResponsavel">
-                </Component>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanel29">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
-                <Property name="columns" type="int" value="1"/>
-                <Property name="horizontalGap" type="int" value="10"/>
-                <Property name="rows" type="int" value="2"/>
-              </Layout>
-              <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel53">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Telefone de contato:"/>
-                    <Property name="horizontalTextPosition" type="int" value="4"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="JTextTelefoneResponsavel1">
                 </Component>
               </SubComponents>
             </Container>

@@ -4,6 +4,15 @@
  */
 package views;
 
+import java.awt.BorderLayout;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
+import model.Ong;
+import model.Pessoa;
+import javax.swing.JPanel;
 
 /**
  *
@@ -11,11 +20,32 @@ package views;
  */
 public class Voluntarios extends javax.swing.JPanel {
 
+    private Ong ongLogada = null;
+
     /**
      * Creates new form SolicitacaoAdocao
      */
-    public Voluntarios() {
+    public Voluntarios(Ong ong) {
         initComponents();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("petcare");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        this.ongLogada = em.find(Ong.class, ong.getId());
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        for (Pessoa voluntario : this.ongLogada.getPessoas()) {
+            if (voluntario.getPapel().equals(Pessoa.Papel.voluntario)) {
+                System.out.println(voluntario.getNome());
+                model.addRow(new Object[]{voluntario.getNome(), voluntario.getEmail()});
+            }
+        }
+
+        em.close();
+        emf.close();
+
     }
 
     /**
@@ -49,6 +79,7 @@ public class Voluntarios extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setMaximumSize(new java.awt.Dimension(630, 490));
+        setPreferredSize(new java.awt.Dimension(630, 300));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(149, 127, 239));
@@ -79,8 +110,11 @@ public class Voluntarios extends javax.swing.JPanel {
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(630, 32767));
+        jPanel1.setPreferredSize(new java.awt.Dimension(630, 400));
 
         jButton1.setBackground(new java.awt.Color(149, 127, 239));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,27 +125,44 @@ public class Voluntarios extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Nome", "Editar"
+                "Nome", "E-mail"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setShowGrid(true);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jLabel16.setText("Buscar Voluntario:");
 
@@ -156,12 +207,12 @@ public class Voluntarios extends javax.swing.JPanel {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(jPanel1);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 630, 370));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 630, 400));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -259,7 +310,18 @@ public class Voluntarios extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        JPanel parentPanel = (JPanel) this.getParent();
+
+        parentPanel.removeAll();
+        // Add new content to the mainPanel
+        JPanel cadastrarVoluntario = new CadastrarVoluntario(this.ongLogada);
+        parentPanel.add(cadastrarVoluntario, BorderLayout.CENTER);
+
+        // Repaint and revalidate the mainPanel to reflect the changes
+        parentPanel.repaint();
+        parentPanel.revalidate();
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -269,6 +331,34 @@ public class Voluntarios extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.rowAtPoint(evt.getPoint());
+        if (row >= 0) {
+            Object rowData = jTable1.getValueAt(row, 1);
+            Pessoa voluntario = null;
+
+            for (Pessoa pessoa : this.ongLogada.getPessoas()) {
+                if (pessoa.getPapel().equals(Pessoa.Papel.voluntario)) {
+                    if (pessoa.getEmail().equals(rowData.toString())) {
+                        voluntario = pessoa;
+                    }
+                }
+            }
+
+            JPanel parentPanel = (JPanel) this.getParent();
+
+            parentPanel.removeAll();
+            // Add new content to the mainPanel
+            JPanel cadastrarVoluntario = new CadastrarVoluntario(this.ongLogada, voluntario);
+            parentPanel.add(cadastrarVoluntario, BorderLayout.CENTER);
+
+            // Repaint and revalidate the mainPanel to reflect the changes
+            parentPanel.repaint();
+            parentPanel.revalidate();
+
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

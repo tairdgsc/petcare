@@ -4,6 +4,14 @@
  */
 package views;
 
+import java.awt.BorderLayout;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JPanel;
+import model.Animal;
+import model.Animal.Sexo;
+import model.Ong;
 
 /**
  *
@@ -11,11 +19,42 @@ package views;
  */
 public class CadastrarPet extends javax.swing.JPanel {
 
+    private Ong ongLogada = null;
+    private Animal animal = null;
+
     /**
      * Creates new form SolicitacaoAdocao
      */
-    public CadastrarPet() {
+    public CadastrarPet(Ong ong) {
         initComponents();
+
+        this.ongLogada = ong;
+        jAdotarButton.setVisible(false);
+
+    }
+
+    public CadastrarPet(Ong ong, Animal animal) {
+        initComponents();
+
+        this.ongLogada = ong;
+        this.animal = animal;
+
+        jLabelTitle.setText("Atualizar um animal");
+        jButtonSubmit.setText("ATUALIZAR");
+        jAdotarButton.setVisible(true);
+
+        jNome.setText(animal.getNome());
+        jRaca.setText(animal.getRaca());
+        jEspecie.setText(animal.getEspecie());
+        jSexo.setSelectedItem(animal.getSexo().toString());
+        jPelagem.setText(animal.getPelagem());
+        jIdade.setText(Integer.toString(animal.getIdade()));
+        jCor.setText(animal.getCor());
+        jPeso.setText(animal.getPeso());
+        jComportamento.setText(animal.getComportamento());
+        jHistorico.setText(animal.getHistorico_saude());
+        jObservacao.setText(animal.getObservacao());
+
     }
 
     /**
@@ -28,60 +67,60 @@ public class CadastrarPet extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelTitle = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        jButtonSubmit = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        jNome = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
+        jEspecie = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
-        jTextField28 = new javax.swing.JTextField();
+        jRaca = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
+        jSexo = new javax.swing.JComboBox<>();
         jPanel9 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
+        jPelagem = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
+        jIdade = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
+        jCor = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jComportamento = new javax.swing.JTextArea();
         jLabel36 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jHistorico = new javax.swing.JTextArea();
         jLabel40 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        jObservacao = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
+        jPeso = new javax.swing.JTextField();
+        jAdotarButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        setMaximumSize(new java.awt.Dimension(630, 490));
+        setMaximumSize(new java.awt.Dimension(630, 470));
+        setMinimumSize(new java.awt.Dimension(630, 470));
+        setPreferredSize(new java.awt.Dimension(630, 470));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(149, 127, 239));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Cadastrar Pet");
+        jLabelTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelTitle.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitle.setText("Cadastrar Pet");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -89,14 +128,14 @@ public class CadastrarPet extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel5)
+                .addComponent(jLabelTitle)
                 .addContainerGap(490, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel5)
+                .addComponent(jLabelTitle)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -107,12 +146,12 @@ public class CadastrarPet extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setBackground(new java.awt.Color(149, 127, 239));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CADASTRAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSubmit.setBackground(new java.awt.Color(149, 127, 239));
+        jButtonSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSubmit.setText("CADASTRAR");
+        jButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonSubmitActionPerformed(evt);
             }
         });
 
@@ -134,7 +173,7 @@ public class CadastrarPet extends javax.swing.JPanel {
         jLabel27.setText("Nome do pet:");
         jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel3.add(jLabel27);
-        jPanel3.add(jTextField19);
+        jPanel3.add(jNome);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
@@ -142,15 +181,7 @@ public class CadastrarPet extends javax.swing.JPanel {
         jLabel28.setText("Especie:");
         jLabel28.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel4.add(jLabel28);
-        jPanel4.add(jTextField20);
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
-
-        jLabel29.setText("Especie:");
-        jLabel29.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel5.add(jLabel29);
-        jPanel5.add(jTextField21);
+        jPanel4.add(jEspecie);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
@@ -161,7 +192,7 @@ public class CadastrarPet extends javax.swing.JPanel {
         jLabel30.setMinimumSize(new java.awt.Dimension(82, 17));
         jLabel30.setPreferredSize(new java.awt.Dimension(82, 17));
         jPanel6.add(jLabel30);
-        jPanel6.add(jTextField28);
+        jPanel6.add(jRaca);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
@@ -169,7 +200,9 @@ public class CadastrarPet extends javax.swing.JPanel {
         jLabel32.setText("Sexo:");
         jLabel32.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel8.add(jLabel32);
-        jPanel8.add(jTextField24);
+
+        jSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        jPanel8.add(jSexo);
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
@@ -177,7 +210,7 @@ public class CadastrarPet extends javax.swing.JPanel {
         jLabel33.setText("Pelagem:");
         jLabel33.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel9.add(jLabel33);
-        jPanel9.add(jTextField25);
+        jPanel9.add(jPelagem);
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
@@ -185,7 +218,7 @@ public class CadastrarPet extends javax.swing.JPanel {
         jLabel34.setText("Idade:");
         jLabel34.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel10.add(jLabel34);
-        jPanel10.add(jTextField26);
+        jPanel10.add(jIdade);
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
@@ -193,14 +226,14 @@ public class CadastrarPet extends javax.swing.JPanel {
         jLabel35.setText("Cor:");
         jLabel35.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel11.add(jLabel35);
-        jPanel11.add(jTextField27);
+        jPanel11.add(jCor);
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setLayout(new java.awt.GridLayout(2, 1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jComportamento.setColumns(20);
+        jComportamento.setRows(5);
+        jScrollPane1.setViewportView(jComportamento);
 
         jLabel36.setText("Comportamento:");
         jLabel36.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -208,73 +241,87 @@ public class CadastrarPet extends javax.swing.JPanel {
         jLabel39.setText("Histórico de saúde:");
         jLabel39.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jHistorico.setColumns(20);
+        jHistorico.setRows(5);
+        jScrollPane2.setViewportView(jHistorico);
 
         jLabel40.setText("Observação:");
         jLabel40.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        jObservacao.setColumns(20);
+        jObservacao.setRows(5);
+        jScrollPane3.setViewportView(jObservacao);
 
         jLabel1.setText("Peso:");
+
+        jAdotarButton.setBackground(new java.awt.Color(149, 127, 239));
+        jAdotarButton.setForeground(new java.awt.Color(255, 255, 255));
+        jAdotarButton.setText("ADOTAR PET");
+        jAdotarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAdotarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(158, 158, 158))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel13)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jAdotarButton))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel13)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel13)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(jAdotarButton))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +329,6 @@ public class CadastrarPet extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,8 +337,7 @@ public class CadastrarPet extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -301,7 +346,7 @@ public class CadastrarPet extends javax.swing.JPanel {
                                 .addGap(16, 16, 16))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,36 +360,119 @@ public class CadastrarPet extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel40)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35))))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jScrollPane4.setViewportView(jPanel1);
 
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 630, 490));
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 630, 370));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        JPanel parentPanel = (JPanel) this.getParent();
+
+        parentPanel.removeAll();
+        // Add new content to the mainPanel
+        JPanel animais = new AnimaisDaOng(this.ongLogada);
+        parentPanel.add(animais, BorderLayout.CENTER);
+
+        // Repaint and revalidate the mainPanel to reflect the changes
+        parentPanel.repaint();
+        parentPanel.revalidate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("petcare");
+        EntityManager em = emf.createEntityManager();
+
+        String Nome = jNome.getText();
+        String Raca = jRaca.getText();
+        String Especie = jEspecie.getText();
+        String sexoText = (String) jSexo.getSelectedItem();
+        Sexo sexo = Sexo.valueOf(sexoText);
+        String Pelagem = jPelagem.getText();
+        String Idade = jIdade.getText();
+        String Cor = jCor.getText();
+        String Peso = jPeso.getText();
+        String Comportamento = jComportamento.getText();
+        String Historico = jHistorico.getText();
+        String Observacao = jObservacao.getText();
+
+        em.getTransaction().begin();
+        this.ongLogada = em.find(Ong.class, this.ongLogada.getId());
+
+        if (this.animal == null) {
+            this.animal = new Animal(Nome, Especie, Raca, Integer.parseInt(Idade), sexo, Cor, Peso, Pelagem, Observacao, "", Historico, Comportamento, this.ongLogada);
+            em.persist(this.animal);
+
+        } else {
+            Animal animal = em.find(Animal.class, this.animal.getId());
+            animal.setNome(Nome);
+            animal.setEspecie(Especie);
+            animal.setRaca(Raca);
+            animal.setIdade(Integer.parseInt(Idade));
+            animal.setSexo(sexo);
+            animal.setCor(Cor);
+            animal.setPeso(Peso);
+            animal.setPelagem(Pelagem);
+            animal.setObservacao(Observacao);
+            animal.setTamanho("");
+            animal.setHistorico_saude(Historico);
+            animal.setComportamento(Comportamento);
+        }
+
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
+
+        JPanel parentPanel = (JPanel) this.getParent();
+
+        parentPanel.removeAll();
+        // Add new content to the mainPanel
+        JPanel animais = new AnimaisDaOng(this.ongLogada);
+        parentPanel.add(animais, BorderLayout.CENTER);
+
+        // Repaint and revalidate the mainPanel to reflect the changes
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jButtonSubmitActionPerformed
+
+    private void jAdotarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdotarButtonActionPerformed
+        JPanel parentPanel = (JPanel) this.getParent();
+
+        parentPanel.removeAll();
+        // Add new content to the mainPanel
+        
+        
+        jLabelTitle.setText("Adotar um pet");
+        JPanel adocaoRealizada = new AdocaoRealizada(this.ongLogada, this.animal);
+        parentPanel.add(adocaoRealizada, BorderLayout.CENTER);
+
+        // Repaint and revalidate the mainPanel to reflect the changes
+        parentPanel.repaint();
+        parentPanel.revalidate();
+    }//GEN-LAST:event_jAdotarButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jAdotarButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonSubmit;
+    private javax.swing.JTextArea jComportamento;
+    private javax.swing.JTextField jCor;
+    private javax.swing.JTextField jEspecie;
+    private javax.swing.JTextArea jHistorico;
+    private javax.swing.JTextField jIdade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -353,7 +481,9 @@ public class CadastrarPet extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelTitle;
+    private javax.swing.JTextField jNome;
+    private javax.swing.JTextArea jObservacao;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -361,25 +491,16 @@ public class CadastrarPet extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JTextField jPelagem;
+    private javax.swing.JTextField jPeso;
+    private javax.swing.JTextField jRaca;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
+    private javax.swing.JComboBox<String> jSexo;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,21 @@
 package views;
 
 import java.awt.BorderLayout;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import model.Adocao;
+import model.Animal;
+import model.Atividade;
+import model.Despesa;
+import model.Endereco;
+import model.Ong;
+import model.Pessoa;
 
 /**
  *
@@ -85,9 +99,6 @@ public class CadastroOng extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         JTextTelefoneResponsavel = new javax.swing.JTextField();
         jPanel23 = new javax.swing.JPanel();
-        jLabel47 = new javax.swing.JLabel();
-        JTextConfirmaPassword = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
         jPanel26 = new javax.swing.JPanel();
@@ -95,22 +106,23 @@ public class CadastroOng extends javax.swing.JFrame {
         JTextNome = new javax.swing.JTextField();
         jPanel27 = new javax.swing.JPanel();
         jLabel51 = new javax.swing.JLabel();
-        JTextRg = new javax.swing.JTextField();
+        JTextCpf = new javax.swing.JTextField();
         jPanel28 = new javax.swing.JPanel();
         jLabel52 = new javax.swing.JLabel();
         JTextEmailResponsavel = new javax.swing.JTextField();
-        jPanel29 = new javax.swing.JPanel();
-        jLabel53 = new javax.swing.JLabel();
-        JTextTelefoneResponsavel1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        JTextConfirmaPassword = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(149, 127, 239));
         setMinimumSize(new java.awt.Dimension(900, 490));
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(149, 127, 239));
         jPanel2.setPreferredSize(new java.awt.Dimension(900, 490));
@@ -133,6 +145,7 @@ public class CadastroOng extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerifyInputWhenFocusTarget(false);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -229,6 +242,12 @@ public class CadastroOng extends javax.swing.JFrame {
         jLabel40.setText("Endereço:");
         jLabel40.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel16.add(jLabel40);
+
+        JTextEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTextEndActionPerformed(evt);
+            }
+        });
         jPanel16.add(JTextEnd);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -312,29 +331,6 @@ public class CadastroOng extends javax.swing.JFrame {
 
         jPanel23.setBackground(new java.awt.Color(255, 255, 255));
         jPanel23.setLayout(new java.awt.GridBagLayout());
-
-        jLabel47.setText("Confirma Senha:");
-        jLabel47.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        jPanel23.add(jLabel47, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
-        jPanel23.add(JTextConfirmaPassword, gridBagConstraints);
-
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(149, 127, 239));
-        jCheckBox1.setText("MOSTRAR");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        jPanel23.add(jCheckBox1, gridBagConstraints);
-
         jPanel3.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 880, 270, -1));
 
         jSeparator2.setPreferredSize(new java.awt.Dimension(64, 3));
@@ -358,10 +354,10 @@ public class CadastroOng extends javax.swing.JFrame {
         jPanel27.setBackground(new java.awt.Color(255, 255, 255));
         jPanel27.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
-        jLabel51.setText("Documento (RG)");
+        jLabel51.setText("Documento (CPF)");
         jLabel51.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel27.add(jLabel51);
-        jPanel27.add(JTextRg);
+        jPanel27.add(JTextCpf);
 
         jPanel3.add(jPanel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 270, -1));
 
@@ -375,20 +371,6 @@ public class CadastroOng extends javax.swing.JFrame {
 
         jPanel3.add(jPanel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 270, -1));
 
-        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel29.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
-
-        jLabel53.setText("Telefone de contato:");
-        jLabel53.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel29.add(jLabel53);
-        jPanel29.add(JTextTelefoneResponsavel1);
-
-        jPanel3.add(jPanel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 240, -1));
-
-        jLabel3.setForeground(new java.awt.Color(149, 127, 239));
-        jLabel3.setText("ENTRAR");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1040, -1, 10));
-
         jButton2.setBackground(new java.awt.Color(149, 127, 239));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("CADASTRE-SE");
@@ -401,7 +383,29 @@ public class CadastroOng extends javax.swing.JFrame {
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 980, 270, 30));
 
         jLabel6.setText("Já tem uma conta?");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 1020, -1, 10));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 1020, -1, 10));
+
+        jLabel47.setText("Confirma Senha:");
+        jLabel47.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel3.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 890, 270, -1));
+        jPanel3.add(JTextConfirmaPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 910, 270, -1));
+
+        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(149, 127, 239));
+        jCheckBox1.setText("MOSTRAR");
+        jPanel3.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 940, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(149, 127, 239));
+        jButton1.setText("ENTRAR");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(149, 127, 239)));
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1050, 80, 20));
 
         jScrollPane1.setViewportView(jPanel3);
 
@@ -415,7 +419,17 @@ public class CadastroOng extends javax.swing.JFrame {
         jLabel5.setText("PetCare");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/amor.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://i.imgur.com/5QlrbKr.png")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -451,12 +465,70 @@ public class CadastroOng extends javax.swing.JFrame {
     }//GEN-LAST:event_JTextEstadoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        JFrame cadastro = new Cadastro();
+        EntityManagerFactory emf
+                = Persistence.createEntityManagerFactory("petcare");
+        EntityManager em = emf.createEntityManager();
 
-//        cadastro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//
-//        cadastro.setVisible(true);
+        String nomeInstuicao = jTextNomeInst.getText();
+        String foco = JTextFoco.getText();
+        String cep = JTextCep.getText();
+        String rua = JTextEnd.getText();
+        String numero = JTextNumero.getText();
+        String cidade = JTextCidade.getText();
+        String estado = JTextEstado.getText();
+        String telefoneContatoInstituicao = JTextTelefone.getText();
+
+        String nomeResponsavel = JTextNome.getText();
+        String cpf = JTextCpf.getText();
+        String emailResponsavel = JTextEmailResponsavel.getText();
+        String telefoneResponsavel = JTextTelefoneResponsavel.getText();
+
+        String email = JTextEmail.getText();
+        String senha = JTextPassword.getText();
+        String confirmaSenha = JTextConfirmaPassword.getText();
+
+        Set<Animal> animais = new HashSet<>();
+        Set<Atividade> atividades = new HashSet<>();
+        Set<Adocao> adocoes = new HashSet<>();
+        Set<Despesa> despesas = new HashSet<>();
+        Set<Pessoa> pessoas = new HashSet<>();
+        Endereco endereco = new Endereco(cep, rua, Integer.parseInt(numero), cidade, estado);
+
+        Ong ong = new Ong(nomeInstuicao, foco, telefoneContatoInstituicao, email, senha, pessoas, animais, atividades, adocoes, endereco, despesas);
+
+        Pessoa responsavel = new Pessoa(nomeResponsavel, cpf, endereco, telefoneResponsavel, emailResponsavel, Pessoa.Papel.gerente, ong, atividades
+        );
+
+        pessoas.add(responsavel);
+        
+        ong.setPessoas(pessoas);
+
+        em.getTransaction().begin();
+        em.persist(responsavel);
+        em.persist(ong);
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
+
+        JFrame login = new Login();
+        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        login.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        JFrame login = new Login();
+        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void JTextEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextEndActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTextEndActionPerformed
 
     /**
      * @param args the command line arguments
@@ -498,6 +570,7 @@ public class CadastroOng extends javax.swing.JFrame {
     private javax.swing.JTextField JTextCep;
     private javax.swing.JTextField JTextCidade;
     private javax.swing.JTextField JTextConfirmaPassword;
+    private javax.swing.JTextField JTextCpf;
     private javax.swing.JTextField JTextEmail;
     private javax.swing.JTextField JTextEmailResponsavel;
     private javax.swing.JTextField JTextEnd;
@@ -506,10 +579,9 @@ public class CadastroOng extends javax.swing.JFrame {
     private javax.swing.JTextField JTextNome;
     private javax.swing.JTextField JTextNumero;
     private javax.swing.JTextField JTextPassword;
-    private javax.swing.JTextField JTextRg;
     private javax.swing.JTextField JTextTelefone;
     private javax.swing.JTextField JTextTelefoneResponsavel;
-    private javax.swing.JTextField JTextTelefoneResponsavel1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
@@ -517,7 +589,6 @@ public class CadastroOng extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel39;
@@ -535,7 +606,6 @@ public class CadastroOng extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -555,7 +625,6 @@ public class CadastroOng extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

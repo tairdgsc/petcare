@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import model.Ong;
 import model.Pessoa;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-06-03T18:44:25", comments="EclipseLink-2.7.10.v20211216-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-06-14T20:03:39", comments="EclipseLink-2.7.10.v20211216-rNA")
 @StaticMetamodel(Atividade.class)
 public class Atividade_ { 
 

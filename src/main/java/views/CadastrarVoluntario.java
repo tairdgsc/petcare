@@ -4,6 +4,17 @@
  */
 package views;
 
+import java.awt.BorderLayout;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JPanel;
+import model.Atividade;
+import model.Endereco;
+import model.Ong;
+import model.Pessoa;
 
 /**
  *
@@ -11,11 +22,35 @@ package views;
  */
 public class CadastrarVoluntario extends javax.swing.JPanel {
 
+    private Ong ongLogada = null;
+    private Pessoa voluntario = null;
+
     /**
      * Creates new form SolicitacaoAdocao
      */
-    public CadastrarVoluntario() {
+    public CadastrarVoluntario(Ong ong) {
         initComponents();
+
+        this.ongLogada = ong;
+
+    }
+
+    public CadastrarVoluntario(Ong ong, Pessoa voluntario) {
+        initComponents();
+
+        this.ongLogada = ong;
+
+        this.voluntario = voluntario;
+
+        jLabelTitle.setText("Atualizar voluntário");
+
+        jButtonSubmit.setText("ATUALIZAR");
+
+        jTextNome.setText(this.voluntario.getNome());
+        jTextCpf.setText(this.voluntario.getCpf());
+        jTextTelefone.setText(this.voluntario.getTelefone());
+        jTextEmail.setText(this.voluntario.getEmail());
+
     }
 
     /**
@@ -28,23 +63,23 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        jButtonSubmit = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
+        jTextNome = new javax.swing.JTextField();
         jPanel13 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
-        jTextField30 = new javax.swing.JTextField();
+        jTextCpf = new javax.swing.JTextField();
         jPanel15 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
-        jTextField33 = new javax.swing.JTextField();
+        jTextTelefone = new javax.swing.JTextField();
         jPanel14 = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
-        jTextField31 = new javax.swing.JTextField();
+        jTextEmail = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -53,10 +88,10 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(149, 127, 239));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Cadastrar Voluntário");
+        jLabelTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelTitle.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitle.setText("Cadastrar Voluntário");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -64,14 +99,14 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel5)
+                .addComponent(jLabelTitle)
                 .addContainerGap(426, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jLabel5)
+                .addComponent(jLabelTitle)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -79,12 +114,12 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setBackground(new java.awt.Color(149, 127, 239));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CADASTRAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSubmit.setBackground(new java.awt.Color(149, 127, 239));
+        jButtonSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSubmit.setText("CADASTRAR");
+        jButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonSubmitActionPerformed(evt);
             }
         });
 
@@ -107,7 +142,7 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
         jLabel36.setText("Nome e Sobrenome:");
         jLabel36.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel12.add(jLabel36);
-        jPanel12.add(jTextField32);
+        jPanel12.add(jTextNome);
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
@@ -116,7 +151,7 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
         jLabel37.setText("Documento (RG)");
         jLabel37.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel13.add(jLabel37);
-        jPanel13.add(jTextField30);
+        jPanel13.add(jTextCpf);
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
@@ -125,7 +160,7 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
         jLabel39.setText("Telefone de contato:");
         jLabel39.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel15.add(jLabel39);
-        jPanel15.add(jTextField33);
+        jPanel15.add(jTextTelefone);
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
@@ -134,7 +169,7 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
         jLabel38.setText("E-mail:");
         jLabel38.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel14.add(jLabel38);
-        jPanel14.add(jTextField31);
+        jPanel14.add(jTextEmail);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -146,7 +181,7 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
                         .addGap(150, 150, 150)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +208,7 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
 
@@ -181,32 +216,84 @@ public class CadastrarVoluntario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        JPanel parentPanel = (JPanel) this.getParent();
+
+        parentPanel.removeAll();
+        // Add new content to the mainPanel
+        JPanel voluntarios = new Voluntarios(this.ongLogada);
+        parentPanel.add(voluntarios, BorderLayout.CENTER);
+
+        // Repaint and revalidate the mainPanel to reflect the changes
+        parentPanel.repaint();
+        parentPanel.revalidate();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("petcare");
+        EntityManager em = emf.createEntityManager();
+
+        String nome = jTextNome.getText();
+        String cpf = jTextCpf.getText();
+        String telefone = jTextTelefone.getText();
+        String email = jTextEmail.getText();
+
+        Set<Atividade> atividades = new HashSet<>();
+
+        Endereco endereco = new Endereco("", "", 12, "", "");
+
+        em.getTransaction().begin();
+
+        if (this.voluntario == null) {
+            this.voluntario = new Pessoa(nome, cpf, endereco, telefone, email, Pessoa.Papel.voluntario, this.ongLogada, atividades);
+            em.persist(this.voluntario);
+        } else {
+            Pessoa voluntario = em.find(Pessoa.class, this.voluntario.getId());
+            voluntario.setNome(nome);
+            voluntario.setCpf(cpf);
+            voluntario.setTelefone(telefone);
+            voluntario.setEmail(email);
+        }
+
+        this.ongLogada = em.find(Ong.class, this.ongLogada.getId());
+
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
+
+        JPanel parentPanel = (JPanel) this.getParent();
+
+        parentPanel.removeAll();
+        // Add new content to the mainPanel
+        JPanel voluntarios = new Voluntarios(this.ongLogada);
+        parentPanel.add(voluntarios, BorderLayout.CENTER);
+
+        // Repaint and revalidate the mainPanel to reflect the changes
+        parentPanel.repaint();
+        parentPanel.revalidate();
+
+
+    }//GEN-LAST:event_jButtonSubmitActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonSubmit;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField33;
+    private javax.swing.JTextField jTextCpf;
+    private javax.swing.JTextField jTextEmail;
+    private javax.swing.JTextField jTextNome;
+    private javax.swing.JTextField jTextTelefone;
     // End of variables declaration//GEN-END:variables
 }

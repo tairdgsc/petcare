@@ -4,6 +4,15 @@
  */
 package views;
 
+import java.awt.BorderLayout;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Animal;
+import model.Ong;
+import model.Pessoa;
 
 /**
  *
@@ -11,11 +20,28 @@ package views;
  */
 public class AnimaisDaOng extends javax.swing.JPanel {
 
+    private Ong ongLogada = null;
+
     /**
      * Creates new form SolicitacaoAdocao
      */
-    public AnimaisDaOng() {
+    public AnimaisDaOng(Ong ong) {
         initComponents();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("petcare");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        this.ongLogada = em.find(Ong.class, ong.getId());
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        for (Animal animal : this.ongLogada.getAnimais()) {
+            model.addRow(new Object[]{animal.getId(), animal.getNome(), animal.getEspecie(), animal.getRaca()});
+        }
+
+        em.close();
+        emf.close();
     }
 
     /**
@@ -83,25 +109,39 @@ public class AnimaisDaOng extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nome", "Especie", "Data", "Visualizar"
+                "Id", "Nome", "Especie", "Raça"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 590, 260));
 
@@ -117,12 +157,48 @@ public class AnimaisDaOng extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        JPanel parentPanel = (JPanel) this.getParent();
+
+        parentPanel.removeAll();
+        // Add new content to the mainPanel
+        JPanel cadastrarVoluntario = new CadastrarPet(this.ongLogada);
+        parentPanel.add(cadastrarVoluntario, BorderLayout.CENTER);
+
+        // Repaint and revalidate the mainPanel to reflect the changes
+        parentPanel.repaint();
+        parentPanel.revalidate();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row = jTable1.rowAtPoint(evt.getPoint());
+        if (row >= 0) {
+            Object rowData = jTable1.getValueAt(row, 0);
+            Animal animalAtual = null;
+
+            for (Animal animal : this.ongLogada.getAnimais()) {
+                if (Integer.toString(animal.getId()).equals(rowData.toString())) {
+                    animalAtual = animal;
+                }
+            }
+
+            JPanel parentPanel = (JPanel) this.getParent();
+
+            parentPanel.removeAll();
+            // Add new content to the mainPanel
+            JPanel cadastrarPet = new CadastrarPet(this.ongLogada, animalAtual);
+            parentPanel.add(cadastrarPet, BorderLayout.CENTER);
+
+            // Repaint and revalidate the mainPanel to reflect the changes
+            parentPanel.repaint();
+            parentPanel.revalidate();
+
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

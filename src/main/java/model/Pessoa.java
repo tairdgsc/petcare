@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +34,7 @@ public class Pessoa {
     private String cpf;
     
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cargo_id", referencedColumnName = "id")
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     Endereco endereco;
     
     @Column(name="telefone")
@@ -45,8 +46,9 @@ public class Pessoa {
     @Column(name="papel")
     public Papel papel;
     
-    @ManyToMany(mappedBy = "pessoas")
-    private Set<Ong> ongs = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ong_id")
+    private Ong ong;
     
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Atividade> atividades = new HashSet<>();
@@ -73,6 +75,14 @@ public Pessoa() {
 
     public int getId() {
         return id;
+    }
+
+    public Ong getOng() {
+        return ong;
+    }
+
+    public void setOng(Ong ong) {
+        this.ong = ong;
     }
 
     public void setId(int id) {
@@ -127,23 +137,17 @@ public Pessoa() {
         this.endereco = endereco;
     }
 
-    public Set<Ong> getOngs() {
-        return ongs;
-    }
 
-    public void setOngs(Set<Ong> ongs) {
-        this.ongs = ongs;
-    }
     
     public Pessoa( String nome, String cpf, Endereco endereco, String telefone, String email,
-              Papel papel, Set<Ong> ongs, Set<Atividade> atividades) {
+              Papel papel, Ong ong, Set<Atividade> atividades) {
     this.nome = nome;
     this.cpf = cpf;
     this.endereco = endereco;
     this.telefone = telefone;
     this.email = email;
     this.papel = papel;
-    this.ongs = ongs;
+    this.ong = ong;
     this.atividades = atividades;
 }
 

@@ -4,6 +4,18 @@
  */
 package views;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import model.Adocao;
+import model.Animal;
+import model.Atividade;
+import model.Despesa;
+import model.Endereco;
+import model.Ong;
+import model.Pessoa;
 
 /**
  *
@@ -11,11 +23,42 @@ package views;
  */
 public class Perfil extends javax.swing.JPanel {
 
+    private Ong ongLogada = null;
+
     /**
      * Creates new form SolicitacaoAdocao
+     * @param ong
      */
-    public Perfil() {
+    public Perfil(Ong ong) {
         initComponents();
+        this.ongLogada = ong;
+
+        jTextNomeInst.setText(ong.getNome());
+        JTextFoco.setText(ong.getFoco());
+        JTextCep.setText(ong.getEndereco().getCep());
+        JTextEnd.setText(ong.getEndereco().getRua());
+        JTextNumero.setText(Integer.toString(ong.getEndereco().getNumero()));
+        JTextCidade.setText(ong.getEndereco().getCidade());
+        JTextEstado.setText(ong.getEndereco().getEstado());
+        JTextTelefone.setText(ong.getContato());
+        Pessoa responsavel = null;
+        for (Pessoa pessoa : ong.getPessoas()) {
+            if (pessoa.getPapel().equals(Pessoa.Papel.gerente)) {
+                responsavel = pessoa;
+            }
+        }
+
+        if (responsavel != null) {
+            JTextNome.setText(responsavel.getNome());
+            JTextCpf.setText(responsavel.getCpf());
+            JTextEmailResponsavel.setText(responsavel.getEmail());
+            JTextTelefoneResponsavel.setText(responsavel.getTelefone());
+
+        }
+        JTextEmail.setText(ong.getEmail());
+        JTextPassword.setText(ong.getSenha());
+        JTextConfirmaPassword.setText(ong.getSenha());
+
     }
 
     /**
@@ -81,19 +124,18 @@ public class Perfil extends javax.swing.JPanel {
         JTextNome = new javax.swing.JTextField();
         jPanel27 = new javax.swing.JPanel();
         jLabel51 = new javax.swing.JLabel();
-        JTextRg = new javax.swing.JTextField();
+        JTextCpf = new javax.swing.JTextField();
         jPanel28 = new javax.swing.JPanel();
         jLabel52 = new javax.swing.JLabel();
         JTextEmailResponsavel = new javax.swing.JTextField();
-        jPanel29 = new javax.swing.JPanel();
-        jLabel53 = new javax.swing.JLabel();
-        JTextTelefoneResponsavel1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setMaximumSize(new java.awt.Dimension(630, 490));
+        setMinimumSize(new java.awt.Dimension(630, 490));
+        setPreferredSize(new java.awt.Dimension(630, 500));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(149, 127, 239));
@@ -122,8 +164,10 @@ public class Perfil extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 100));
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 410));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -137,6 +181,12 @@ public class Perfil extends javax.swing.JPanel {
         jLabel43.setText("CEP:");
         jLabel43.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel19.add(jLabel43);
+
+        JTextCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTextCepActionPerformed(evt);
+            }
+        });
         jPanel19.add(JTextCep);
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
@@ -321,10 +371,10 @@ public class Perfil extends javax.swing.JPanel {
         jPanel27.setBackground(new java.awt.Color(255, 255, 255));
         jPanel27.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
 
-        jLabel51.setText("Documento (RG)");
+        jLabel51.setText("Documento (CPF)");
         jLabel51.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel27.add(jLabel51);
-        jPanel27.add(JTextRg);
+        jPanel27.add(JTextCpf);
 
         jPanel28.setBackground(new java.awt.Color(255, 255, 255));
         jPanel28.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
@@ -333,14 +383,6 @@ public class Perfil extends javax.swing.JPanel {
         jLabel52.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel28.add(jLabel52);
         jPanel28.add(JTextEmailResponsavel);
-
-        jPanel29.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel29.setLayout(new java.awt.GridLayout(2, 1, 10, 0));
-
-        jLabel53.setText("Telefone de contato:");
-        jLabel53.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jPanel29.add(jLabel53);
-        jPanel29.add(JTextTelefoneResponsavel1);
 
         jButton2.setBackground(new java.awt.Color(241, 69, 116));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -402,9 +444,7 @@ public class Perfil extends javax.swing.JPanel {
                 .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -454,9 +494,7 @@ public class Perfil extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
@@ -476,7 +514,7 @@ public class Perfil extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jPanel3);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 630, 490));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 630, 410));
     }// </editor-fold>//GEN-END:initComponents
 
     private void JTextEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextEstadoActionPerformed
@@ -492,14 +530,69 @@ public class Perfil extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+
+        EntityManagerFactory emf
+                = Persistence.createEntityManagerFactory("petcare");
+        EntityManager em = emf.createEntityManager();
+
+        String nomeInstuicao = jTextNomeInst.getText();
+        String foco = JTextFoco.getText();
+        String cep = JTextCep.getText();
+        String rua = JTextEnd.getText();
+        String numero = JTextNumero.getText();
+        String cidade = JTextCidade.getText();
+        String estado = JTextEstado.getText();
+        String telefoneContatoInstituicao = JTextTelefone.getText();
+
+        String nomeResponsavel = JTextNome.getText();
+        String rg = JTextCpf.getText();
+        String emailResponsavel = JTextEmailResponsavel.getText();
+        String telefoneResponsavel = JTextTelefoneResponsavel.getText();
+
+        String email = JTextEmail.getText();
+        String senha = JTextPassword.getText();
+        String confirmaSenha = JTextConfirmaPassword.getText();
+
+        Set<Animal> animais = new HashSet<>();
+        Set<Atividade> atividades = new HashSet<>();
+        Set<Adocao> adocoes = new HashSet<>();
+        Set<Despesa> despesas = new HashSet<>();
+        Set<Pessoa> pessoas = new HashSet<>();
+        Endereco endereco = new Endereco(cep, rua, Integer.parseInt(numero), cidade, estado);
+        Pessoa responsavel = new Pessoa(nomeResponsavel, rg, endereco, telefoneResponsavel, emailResponsavel, Pessoa.Papel.gerente, this.ongLogada, atividades
+        );
+
+        pessoas.add(responsavel);
+        this.ongLogada.setPessoas(pessoas);
+        this.ongLogada.setEndereco(endereco);
+        this.ongLogada.setAdocoes(adocoes);
+        this.ongLogada.setDespesas(despesas);
+        this.ongLogada.setAnimais(animais);
+        this.ongLogada.setSenha(senha);
+        this.ongLogada.setEmail(email);
+        this.ongLogada.setNome(nomeInstuicao);
+        this.ongLogada.setFoco(foco);
+        this.ongLogada.setContato(telefoneContatoInstituicao);
+
+        em.getTransaction().begin();
+        em.persist(responsavel);
+        em.persist(this.ongLogada);
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void JTextCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTextCepActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTextCep;
     private javax.swing.JTextField JTextCidade;
     private javax.swing.JTextField JTextConfirmaPassword;
+    private javax.swing.JTextField JTextCpf;
     private javax.swing.JTextField JTextEmail;
     private javax.swing.JTextField JTextEmailResponsavel;
     private javax.swing.JTextField JTextEnd;
@@ -508,10 +601,8 @@ public class Perfil extends javax.swing.JPanel {
     private javax.swing.JTextField JTextNome;
     private javax.swing.JTextField JTextNumero;
     private javax.swing.JTextField JTextPassword;
-    private javax.swing.JTextField JTextRg;
     private javax.swing.JTextField JTextTelefone;
     private javax.swing.JTextField JTextTelefoneResponsavel;
-    private javax.swing.JTextField JTextTelefoneResponsavel1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
@@ -534,7 +625,6 @@ public class Perfil extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel15;
@@ -551,7 +641,6 @@ public class Perfil extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

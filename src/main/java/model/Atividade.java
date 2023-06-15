@@ -26,6 +26,17 @@ public class Atividade {
     @Column(name = "nome_atividade")
     private String nome_atividade;
 
+    @Column(name = "local")
+    private String local;
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
     @Column(name = "data_hora")
     private Time data_hora;
 
@@ -35,7 +46,7 @@ public class Atividade {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ong_id")
     private Ong ong;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
@@ -49,6 +60,12 @@ public class Atividade {
     }
 
     public Atividade() {
+    }
+
+    public Atividade(String nome, String local, Ong ong) {
+        this.nome_atividade = nome;
+        this.local = local;
+        this.ong = ong;
     }
 
     public int getId() {

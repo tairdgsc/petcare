@@ -42,14 +42,7 @@ public class Ong {
     @Column(name = "senha")
     private String senha;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "ong_pessoa",
-            joinColumns = {
-                @JoinColumn(name = "ong_id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "pessoa_id")}
-    )
+    @OneToMany(mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Pessoa> pessoas = new HashSet<>();
 
     @OneToMany(mappedBy = "ong", cascade = CascadeType.ALL, orphanRemoval = true)

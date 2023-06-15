@@ -4,13 +4,12 @@
  */
 package views;
 
-import java.net.URL;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import model.Ong;
 
@@ -49,11 +48,12 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(149, 127, 239));
@@ -85,16 +85,17 @@ public class Login extends javax.swing.JFrame {
         jCheckBox1.setText("MOSTRAR");
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(149, 127, 239));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("ENTRAR");
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(149, 127, 239));
+        jButton1.setText("CADASTRE-SE");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(149, 127, 239)));
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 250, 270, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 80, 20));
 
         jLabel3.setText("Não tem uma conta?");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
@@ -107,9 +108,16 @@ public class Login extends javax.swing.JFrame {
         jLabel6.setText("ENTRAR");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1040, -1, 10));
 
-        jLabel8.setForeground(new java.awt.Color(149, 127, 239));
-        jLabel8.setText("CADASTRE-SE");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, 10));
+        jButton2.setBackground(new java.awt.Color(149, 127, 239));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("ENTRAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 250, 270, 40));
 
         jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 320, 430));
 
@@ -119,7 +127,17 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText("PetCare");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/gatitocachorrito.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://i.imgur.com/VrJPlb8.png")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 490));
@@ -127,7 +145,16 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        JFrame cadastroOng = new CadastroOng();
+        cadastroOng.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        cadastroOng.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         EntityManagerFactory emf
                 = Persistence.createEntityManagerFactory("petcare");
         EntityManager em = emf.createEntityManager();
@@ -142,7 +169,7 @@ public class Login extends javax.swing.JFrame {
 
         for (Ong ong : lista) {
             if (ong.getSenha().equals(password)) {
-                JFrame menu = new Menu();
+                JFrame menu = new Menu(ong);
                 menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 menu.setVisible(true);
                 this.dispose();
@@ -154,7 +181,7 @@ public class Login extends javax.swing.JFrame {
 
         em.close();
         emf.close();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,12 +216,14 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTextEmail;
     private javax.swing.JTextField JTextPassword;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
@@ -205,8 +234,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
 }

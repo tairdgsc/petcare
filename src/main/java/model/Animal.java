@@ -14,51 +14,103 @@ import javax.persistence.Table;
  *
  * @author Taila
  */
-
 @Entity
 @Table(name = "animal")
 public class Animal {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @Column(name = "nome")
     private String nome;
-    
+
     @Column(name = "especie")
     private String especie;
-    
+
     @Column(name = "raca")
     private String raca;
-    
+
     @Column(name = "idade")
     private int idade;
-    
+
     @Column(name = "sexo")
     private Sexo sexo;
-    
+
     @Column(name = "cor")
     private String cor;
-    
+
+    @Column(name = "peso")
+    private String peso;
+
+    @Column(name = "pelagem")
+    private String pelagem;
+
+    @Column(name = "observacao")
+    private String observacao;
+
     @Column(name = "tamanho")
     private String tamanho;
     
     @Column(name = "historico_saude")
     private String historico_saude;
-    
+
     @Column(name = "comportamento")
     private String comportamento;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ong_id")
     private Ong ong;
 
-public enum Sexo {
-M,
-F}
+    public Animal() {
+    }
 
-public Animal() {
-}
+    public Animal(String nome, String especie, String raca, int idade, Sexo sexo, String cor,
+            String peso, String pelagem, String observacao, String tamanho,
+            String historico_saude, String comportamento, Ong ong) {
+        this.nome = nome;
+        this.especie = especie;
+        this.raca = raca;
+        this.idade = idade;
+        this.sexo = sexo;
+        this.cor = cor;
+        this.peso = peso;
+        this.pelagem = pelagem;
+        this.observacao = observacao;
+        this.tamanho = tamanho;
+        this.historico_saude = historico_saude;
+        this.comportamento = comportamento;
+        this.ong = ong;
+    }
+
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public String getPelagem() {
+        return pelagem;
+    }
+
+    public void setPelagem(String pelagem) {
+        this.pelagem = pelagem;
+    }
+
+    public enum Sexo {
+        M,
+        F
+    }
 
     public int getId() {
         return id;
