@@ -57,6 +57,17 @@ public class Animal {
 
     @Column(name = "comportamento")
     private String comportamento;
+    
+    @Column(name= "ja_foi_adotado")
+    private Boolean ja_foi_adotado;
+
+    public Boolean getJa_foi_adotado() {
+        return ja_foi_adotado;
+    }
+
+    public void setJa_foi_adotado(Boolean ja_foi_adotado) {
+        this.ja_foi_adotado = ja_foi_adotado;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ong_id")
@@ -81,6 +92,7 @@ public class Animal {
         this.historico_saude = historico_saude;
         this.comportamento = comportamento;
         this.ong = ong;
+        this.ja_foi_adotado = false;
     }
 
     public String getPeso() {

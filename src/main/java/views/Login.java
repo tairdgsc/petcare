@@ -4,6 +4,7 @@
  */
 package views;
 
+import java.awt.event.ItemEvent;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -24,6 +25,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        JTextPassword.setEchoChar('\u25CF');
     }
 
     /**
@@ -39,7 +41,8 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        JTextPassword = new javax.swing.JTextField();
+        JTextPassword = new javax.swing.JPasswordField();
+        JTextPassword2 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         JTextEmail = new javax.swing.JTextField();
@@ -71,6 +74,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Bem-vindo de volta! (:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
         jPanel1.add(JTextPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 270, 30));
+        jPanel1.add(JTextPassword2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 270, 30));
 
         jLabel16.setText("E-mail:");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
@@ -83,6 +87,11 @@ public class Login extends javax.swing.JFrame {
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(149, 127, 239));
         jCheckBox1.setText("MOSTRAR");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -160,7 +169,8 @@ public class Login extends javax.swing.JFrame {
         EntityManager em = emf.createEntityManager();
 
         String email = JTextEmail.getText();
-        String password = JTextPassword.getText();
+        char[] password = JTextPassword.getPassword();
+        String passwordString = new String(password);
 
         Query consulta = em.createQuery("select o "
                 + "from Ong o where o.email = :email");
@@ -168,7 +178,7 @@ public class Login extends javax.swing.JFrame {
         List<Ong> lista = consulta.getResultList();
 
         for (Ong ong : lista) {
-            if (ong.getSenha().equals(password)) {
+            if (ong.getSenha().equals(passwordString)) {
                 JFrame menu = new Menu(ong);
                 menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 menu.setVisible(true);
@@ -182,6 +192,15 @@ public class Login extends javax.swing.JFrame {
         em.close();
         emf.close();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if (jCheckBox1.isSelected()) {
+            JTextPassword.setEchoChar((char) 0);
+        } else {
+            JTextPassword.setEchoChar('\u25CF');
+        }
+
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,7 +240,8 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTextEmail;
-    private javax.swing.JTextField JTextPassword;
+    private javax.swing.JPasswordField JTextPassword;
+    private javax.swing.JTextField JTextPassword2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;

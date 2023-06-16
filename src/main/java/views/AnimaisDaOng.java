@@ -37,7 +37,10 @@ public class AnimaisDaOng extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         for (Animal animal : this.ongLogada.getAnimais()) {
-            model.addRow(new Object[]{animal.getId(), animal.getNome(), animal.getEspecie(), animal.getRaca()});
+            if (!animal.getJa_foi_adotado()) {
+                model.addRow(new Object[]{animal.getId(), animal.getNome(), animal.getEspecie(), animal.getRaca()});
+
+            }
         }
 
         em.close();
@@ -55,12 +58,9 @@ public class AnimaisDaOng extends javax.swing.JPanel {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        JTextEmail = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -93,10 +93,6 @@ public class AnimaisDaOng extends javax.swing.JPanel {
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 100));
 
-        jLabel16.setText("Buscar pet:");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
-        add(JTextEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 250, 30));
-
         jButton1.setBackground(new java.awt.Color(149, 127, 239));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CADASTRAR PET");
@@ -105,7 +101,7 @@ public class AnimaisDaOng extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 140, 30));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 140, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,17 +139,7 @@ public class AnimaisDaOng extends javax.swing.JPanel {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 590, 260));
-
-        jButton2.setBackground(new java.awt.Color(149, 127, 239));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("BUSCAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 90, 30));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 590, 260));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -169,10 +155,6 @@ public class AnimaisDaOng extends javax.swing.JPanel {
         parentPanel.revalidate();
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int row = jTable1.rowAtPoint(evt.getPoint());
@@ -202,10 +184,7 @@ public class AnimaisDaOng extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JTextEmail;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

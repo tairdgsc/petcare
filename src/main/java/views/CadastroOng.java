@@ -4,7 +4,6 @@
  */
 package views;
 
-import java.awt.BorderLayout;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.EntityManager;
@@ -12,7 +11,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import model.Adocao;
 import model.Animal;
 import model.Atividade;
@@ -37,6 +35,9 @@ public class CadastroOng extends javax.swing.JFrame {
 
         revalidate();
         repaint();
+
+        JTextPassword.setEchoChar('\u25CF');
+        JTextConfirmaPassword.setEchoChar('\u25CF');
 
         pack();
         setVisible(true);
@@ -91,7 +92,7 @@ public class CadastroOng extends javax.swing.JFrame {
         JTextEmail = new javax.swing.JTextField();
         jPanel21 = new javax.swing.JPanel();
         jLabel45 = new javax.swing.JLabel();
-        JTextPassword = new javax.swing.JTextField();
+        JTextPassword = new javax.swing.JPasswordField();
         jPanel22 = new javax.swing.JPanel();
         jLabel46 = new javax.swing.JLabel();
         JTextFoco = new javax.swing.JTextField();
@@ -113,9 +114,9 @@ public class CadastroOng extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
-        JTextConfirmaPassword = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
+        JTextConfirmaPassword = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -388,11 +389,15 @@ public class CadastroOng extends javax.swing.JFrame {
         jLabel47.setText("Confirma Senha:");
         jLabel47.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jPanel3.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 890, 270, -1));
-        jPanel3.add(JTextConfirmaPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 910, 270, -1));
 
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(149, 127, 239));
         jCheckBox1.setText("MOSTRAR");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 940, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -405,7 +410,8 @@ public class CadastroOng extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1050, 80, 20));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 1040, 80, 20));
+        jPanel3.add(JTextConfirmaPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 910, 270, -1));
 
         jScrollPane1.setViewportView(jPanel3);
 
@@ -484,8 +490,8 @@ public class CadastroOng extends javax.swing.JFrame {
         String telefoneResponsavel = JTextTelefoneResponsavel.getText();
 
         String email = JTextEmail.getText();
-        String senha = JTextPassword.getText();
-        String confirmaSenha = JTextConfirmaPassword.getText();
+           char[] password = JTextPassword.getPassword();
+        String passwordString = new String(password);
 
         Set<Animal> animais = new HashSet<>();
         Set<Atividade> atividades = new HashSet<>();
@@ -494,13 +500,13 @@ public class CadastroOng extends javax.swing.JFrame {
         Set<Pessoa> pessoas = new HashSet<>();
         Endereco endereco = new Endereco(cep, rua, Integer.parseInt(numero), cidade, estado);
 
-        Ong ong = new Ong(nomeInstuicao, foco, telefoneContatoInstituicao, email, senha, pessoas, animais, atividades, adocoes, endereco, despesas);
+        Ong ong = new Ong(nomeInstuicao, foco, telefoneContatoInstituicao, email, passwordString, pessoas, animais, atividades, adocoes, endereco, despesas);
 
         Pessoa responsavel = new Pessoa(nomeResponsavel, cpf, endereco, telefoneResponsavel, emailResponsavel, Pessoa.Papel.gerente, ong, atividades
         );
 
         pessoas.add(responsavel);
-        
+
         ong.setPessoas(pessoas);
 
         em.getTransaction().begin();
@@ -529,6 +535,16 @@ public class CadastroOng extends javax.swing.JFrame {
     private void JTextEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextEndActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JTextEndActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if (jCheckBox1.isSelected()) {
+            JTextPassword.setEchoChar((char) 0);
+            JTextConfirmaPassword.setEchoChar((char) 0);
+        } else {
+            JTextPassword.setEchoChar('\u25CF');
+            JTextConfirmaPassword.setEchoChar('\u25CF');
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -569,7 +585,7 @@ public class CadastroOng extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTextCep;
     private javax.swing.JTextField JTextCidade;
-    private javax.swing.JTextField JTextConfirmaPassword;
+    private javax.swing.JPasswordField JTextConfirmaPassword;
     private javax.swing.JTextField JTextCpf;
     private javax.swing.JTextField JTextEmail;
     private javax.swing.JTextField JTextEmailResponsavel;
@@ -578,7 +594,7 @@ public class CadastroOng extends javax.swing.JFrame {
     private javax.swing.JTextField JTextFoco;
     private javax.swing.JTextField JTextNome;
     private javax.swing.JTextField JTextNumero;
-    private javax.swing.JTextField JTextPassword;
+    private javax.swing.JPasswordField JTextPassword;
     private javax.swing.JTextField JTextTelefone;
     private javax.swing.JTextField JTextTelefoneResponsavel;
     private javax.swing.JButton jButton1;

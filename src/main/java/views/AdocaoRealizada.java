@@ -271,6 +271,10 @@ public class AdocaoRealizada extends javax.swing.JPanel {
         Pessoa adotante = new Pessoa(Nome1, Cpf, endereco, Telefone, Email, Pessoa.Papel.adotante, this.ongLogada, atividades);
 
         Adocao adocao = new Adocao(Adocao.Status.APROVADA, this.ongLogada, adotante, this.animal);
+        
+        Animal animalAtualizado = em.find(Animal.class, this.animal.getId());
+        
+        animalAtualizado.setJa_foi_adotado(Boolean.TRUE);
 
         em.persist(adotante);
         em.persist(adocao);
